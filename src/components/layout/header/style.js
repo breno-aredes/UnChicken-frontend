@@ -28,7 +28,7 @@ export const Logo = styled.div`
     font-weight: bold;
     -webkit-text-stroke: 1px #00d9ff;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+    text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0;
   }
 
   img {
@@ -49,6 +49,6 @@ export const BarNeon = styled.div`
   background-color: #00d9ff;
   border: 1px solid #00d9ff;
   border-radius: 4px;
-  box-shadow: 0 0 50px #00d9ff, 0 0 15px #00d9ffc0;
+  box-shadow: 0 0 20px 2px #00d9ffcc, 0 0 15px 1px #00d9ff;
   margin: 0 20px 0 20px;
 `;
