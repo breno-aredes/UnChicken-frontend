@@ -10,7 +10,7 @@ export const NeonButton = styled.button`
   transition: box-shadow 0.1s;
   color: #575757;
   border: 2px solid #575757;
-
+  font-family: "Roboto", sans-serif;
   :hover {
     border: 2px solid #00d9ff;
     color: #00d9ff;
