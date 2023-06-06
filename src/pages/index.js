@@ -6,13 +6,14 @@ export default function Home() {
     <>
       <Header />
       <Body>
+        <img src="/UnChickenApp2.0.jpg"></img>
         <h1>
-          Welcome to <span>UnChicken</span>
+          Bem-vindo ao <span>UnChicken</span>!
         </h1>
         <h2>
-          Our aim is to enhance your performance in free training and
-          calisthenics, helping you go beyond being a chicken and achieve
-          greater results by constantly challenging you.
+          Melhore seu desempenho em treinos livres e calistenia. Supere limites,
+          deixe de ser um <span>FRANGO</span> e alcance resultados incríveis com
+          desafios constantes. Junte-se a nós!
         </h2>
       </Body>
     </>
@@ -57,5 +58,12 @@ const Body = styled.div`
     -webkit-text-stroke: 1px #00d9ff;
     -webkit-text-fill-color: transparent;
     text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0;
+  }
+  img {
+    height: 250px;
+    border-radius: 200px;
+    border: 2px solid #00d9ff;
+    box-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+    margin-bottom: 20px;
   }
 `;
