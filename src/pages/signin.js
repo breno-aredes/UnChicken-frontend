@@ -33,7 +33,7 @@ export default function signIn() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <NeonButton hover={isFormValid()}>Entrar</NeonButton>
+            <StyleNeonButton hover={isFormValid()}>Entrar</StyleNeonButton>
           </form>
           <Link style={{ textDecoration: "none" }} href="/signup">
             <h3>
@@ -45,6 +45,10 @@ export default function signIn() {
     </>
   );
 }
+
+const StyleNeonButton = styled(NeonButton)`
+  margin-top: 20px;
+`;
 
 const Body = styled.div`
   background-image: linear-gradient(
@@ -80,6 +84,7 @@ const SignInContainer = styled.div`
     color: #00d9ff;
     text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
     font-size: 40px;
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
   }
   h3 {

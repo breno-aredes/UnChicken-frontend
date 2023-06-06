@@ -44,6 +44,7 @@ const Body = styled.div`
     text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
     font-size: 40px;
     font-weight: bold;
+    font-family: "Roboto", sans-serif;
   }
   h2 {
     width: 500px;
