@@ -7,9 +7,30 @@ import styled from "styled-components";
 export default function signUp() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confirmEmail, setConfirmEmail] = useState("");
+  const [errorEmail, setErrorEmail] = useState(false);
+  const [errorPassword, setErrorPassword] = useState(false);
 
   function isFormValid() {
-    return email !== "" && password !== "";
+    return (
+      email !== "" &&
+      password !== "" &&
+      name !== "" &&
+      confirmPassword !== "" &&
+      confirmEmail !== ""
+    );
+  }
+
+  async function createAcount(e) {
+    e.preventDefault();
+    if (email !== confirmEmail) {
+      setErrorEmail(true);
+    }
+    if (password !== confirmPassword) {
+      setErrorPassword(true);
+    }
   }
 
   return (
@@ -19,34 +40,54 @@ export default function signUp() {
         <SignInContainer>
           <h1>Cadastre-se</h1>
 
-          <form>
-            <input
+          <form onSubmit={createAcount}>
+            <Input
+              placeholder="Nome"
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            <Input
               placeholder="E-mail"
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              errorNeon={errorEmail}
             />
-            <input
+            <Input
               placeholder="Confirme o e-mail"
               type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={confirmEmail}
+              onChange={(e) => setConfirmEmail(e.target.value)}
+              errorNeon={errorEmail}
             />
-
-            <input
+            {!errorEmail ? (
+              <></>
+            ) : (
+              <h2>Os campos de email e confirmar email devem ser iguais.</h2>
+            )}
+            <Input
               placeholder="Senha"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              errorNeon={errorPassword}
             />
-
-            <input
+            <Input
               placeholder="Confirme a senha"
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              errorNeon={errorPassword}
             />
-            <NeonButton hover={isFormValid()}>Cadrastre-se</NeonButton>
+            {!errorPassword ? (
+              <></>
+            ) : (
+              <h2>Os campos de senha e confirmar senha devem ser iguais.</h2>
+            )}
+            <StyleNeonButton type="submit" hover={isFormValid()}>
+              Cadrastre-se
+            </StyleNeonButton>
           </form>
           <Link style={{ textDecoration: "none" }} href="/signin">
             <h3>
@@ -58,6 +99,10 @@ export default function signUp() {
     </>
   );
 }
+
+const StyleNeonButton = styled(NeonButton)`
+  margin-top: 20px;
+`;
 
 const Body = styled.div`
   background-image: linear-gradient(
@@ -78,6 +123,7 @@ const Body = styled.div`
 `;
 
 const SignInContainer = styled.div`
+  margin-top: 80px;
   padding: 30px;
   background-color: black;
   border: 2px solid #00d9ff;
@@ -93,7 +139,14 @@ const SignInContainer = styled.div`
     color: #00d9ff;
     text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
     font-size: 40px;
+    font-family: "Roboto", sans-serif;
     font-weight: bold;
+  }
+  h2 {
+    font-size: 10px;
+    white-space: pre-line;
+    color: #ff0000;
+    text-shadow: 0px 0px 10px #ff0000cc, 0px 0px 3px #ff0000;
   }
   h3 {
     margin-top: 40px;
@@ -108,29 +161,39 @@ const SignInContainer = styled.div`
       text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
     }
   }
-  input {
-    width: 300px;
-    padding: 2px 10px;
-    color: #00d9ff;
-    border: none;
-    border-bottom: 2px solid #00d9ff;
-    background-color: black;
-    margin-bottom: 30px;
-    outline: none;
-    box-shadow: 0 8px 15px -15px #00d9ff, 0 8px 10px -5px #00d9ffc0;
-    border-radius: 10px;
-    text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
-  }
-  input:focus::-webkit-input-placeholder {
-    color: transparent;
-  }
-  input::placeholder {
-    color: #808080;
-    text-shadow: none;
-    font-size: 15px;
-  }
+
   form {
     display: flex;
     flex-direction: column;
+  }
+`;
+
+const Input = styled.input`
+  width: 300px;
+  padding: 2px 10px;
+  color: ${(props) => (props.errorNeon ? "#ff0000" : "#00d9ff")};
+  border: none;
+  border-bottom: 2px solid
+    ${(props) => (props.errorNeon ? "#ff0000" : "#00d9ff")};
+  background-color: black;
+  margin: 15px 0px;
+  outline: none;
+  box-shadow: ${(props) =>
+    props.errorNeon
+      ? "0 8px 15px -15px #FF0000, 0 8px 10px -5px #FF0000c0"
+      : "0 8px 15px -15px #00d9ff, 0 8px 10px -5px #00d9ffc0"};
+  border-radius: 10px;
+  text-shadow: ${(props) =>
+    props.errorNeon
+      ? "0px 0px 10px #FF0000cc, 0px 0px 3px #ff0000"
+      : "0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff"};
+
+  :focus::-webkit-input-placeholder {
+    color: transparent;
+  }
+  ::placeholder {
+    color: #808080;
+    text-shadow: none;
+    font-size: 15px;
   }
 `;
