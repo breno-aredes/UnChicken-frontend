@@ -145,8 +145,8 @@ const SignInContainer = styled.div`
   h2 {
     font-size: 10px;
     white-space: pre-line;
-    color: #ff0000;
-    text-shadow: 0px 0px 10px #ff0000cc, 0px 0px 3px #ff0000;
+    color: #ff5555;
+    text-shadow: 0px 0px 10px #ff5555cc, 0px 0px 3px #ff5555;
   }
   h3 {
     margin-top: 40px;
@@ -171,21 +171,21 @@ const SignInContainer = styled.div`
 const Input = styled.input`
   width: 300px;
   padding: 2px 10px;
-  color: ${(props) => (props.errorNeon ? "#ff0000" : "#00d9ff")};
+  color: ${(props) => (props.errorNeon ? "#ff5555" : "#00d9ff")};
   border: none;
   border-bottom: 2px solid
-    ${(props) => (props.errorNeon ? "#ff0000" : "#00d9ff")};
+    ${(props) => (props.errorNeon ? "#ff5555" : "#00d9ff")};
   background-color: black;
   margin: 15px 0px;
   outline: none;
   box-shadow: ${(props) =>
     props.errorNeon
-      ? "0 8px 15px -15px #FF0000, 0 8px 10px -5px #FF0000c0"
+      ? "0 8px 15px -15px #ff5555, 0 8px 10px -5px #ff5555c0"
       : "0 8px 15px -15px #00d9ff, 0 8px 10px -5px #00d9ffc0"};
   border-radius: 10px;
   text-shadow: ${(props) =>
     props.errorNeon
-      ? "0px 0px 10px #FF0000cc, 0px 0px 3px #ff0000"
+      ? "0px 0px 10px #ff5555cc, 0px 0px 3px #ff5555"
       : "0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff"};
 
   :focus::-webkit-input-placeholder {
