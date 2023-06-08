@@ -23,4 +23,14 @@ export const NeonButton = styled.button`
       cursor: pointer;
     }
   `}
+
+  ${(props) =>
+    props.hover &&
+    `
+    border: 2px solid #00d9ff;
+      color: #00d9ff;
+      box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0 inset;
+      text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+      cursor: pointer;
+  `}
 `;
