@@ -1,12 +1,16 @@
 import Header from "@/components/layout/header";
 import styled from "styled-components";
+import { Tilt } from "react-tilt";
 
 export default function Home() {
   return (
     <>
       <Header />
       <Body>
-        <img src="/UnChickenApp2.0.jpg"></img>
+        <Tilt>
+          <TiltImage src="/UnChickenApp2.0.jpg"></TiltImage>
+        </Tilt>
+
         <h1>
           Bem-vindo ao <span>UnChicken</span>!
         </h1>
@@ -36,7 +40,7 @@ const Body = styled.div`
   flex-direction: column;
   text-align: center;
   font-family: "Roboto", sans-serif;
-
+  perspective: 1000px;
   h1 {
     width: 500px;
     margin-bottom: 20px;
@@ -60,11 +64,20 @@ const Body = styled.div`
     -webkit-text-fill-color: transparent;
     text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0;
   }
-  img {
-    height: 250px;
-    border-radius: 200px;
-    border: 2px solid #00d9ff;
-    box-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
-    margin-bottom: 20px;
+`;
+
+const TiltImage = styled.img`
+  height: 250px;
+  border-radius: 200px;
+  border: 2px solid #00d9ff;
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0px 0px 40px #00d9ffcc, 0px 0px 12px #00d9ff;
+  object-fit: cover;
+
+  &:hover {
+    transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1);
+    box-shadow: 0px 0px 30px #00d9ffcc, 0px 0px 9px #00d9ff;
   }
 `;
