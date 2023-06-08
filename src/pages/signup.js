@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import { isEmail, isLength } from "validator";
 
 export default function signUp() {
   const [email, setEmail] = useState("");
@@ -16,8 +17,8 @@ export default function signUp() {
 
   const router = useRouter();
 
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorPassword, setErrorPassword] = useState(false);
+  const [errorEmail, setErrorEmail] = useState([]);
+  const [errorPassword, setErrorPassword] = useState([]);
 
   const { signUpLoading, signUp } = useSignUp();
 
@@ -33,13 +34,31 @@ export default function signUp() {
 
   async function createAcount(e) {
     e.preventDefault();
+    const newErrorEmail = [];
+    const newErrorPassword = [];
+
     if (email !== confirmEmail) {
-      return setErrorEmail(true);
-    }
-    if (password !== confirmPassword) {
-      return setErrorPassword(true);
+      newErrorEmail.push(1);
     }
 
+    if (password !== confirmPassword) {
+      newErrorPassword.push(1);
+    }
+
+    if (!isEmail(email)) {
+      newErrorEmail.push(2);
+    }
+
+    if (!isLength(password, { min: 6 })) {
+      newErrorPassword.push(2);
+    }
+
+    setErrorEmail(newErrorEmail);
+    setErrorPassword(newErrorPassword);
+
+    if (newErrorEmail.length > 0 || newErrorPassword.length > 0) {
+      return;
+    }
     const body = {
       name,
       email,
@@ -74,14 +93,14 @@ export default function signUp() {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              errorNeon={errorEmail}
+              errorNeon={errorEmail.length > 0 || error === 409}
             />
             <Input
               placeholder="Confirme o e-mail"
               type="text"
               value={confirmEmail}
               onChange={(e) => setConfirmEmail(e.target.value)}
-              errorNeon={errorEmail}
+              errorNeon={errorEmail.length > 0 || error === 409}
             />
 
             <Input
@@ -89,30 +108,28 @@ export default function signUp() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              errorNeon={errorPassword}
+              errorNeon={errorPassword.length > 0}
             />
             <Input
               placeholder="Confirme a senha"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              errorNeon={errorPassword}
+              errorNeon={errorPassword.length > 0}
             />
-            {!errorEmail ? (
-              <></>
-            ) : (
+            {errorEmail.includes(1) && (
               <h2>* Os campos de email e confirmar email devem ser iguais.</h2>
             )}
-            {!errorPassword ? (
-              <></>
-            ) : (
+            {errorPassword.includes(1) && (
               <h2>* Os campos de senha e confirmar senha devem ser iguais.</h2>
             )}
-            {error !== 409 ? (
-              <></>
-            ) : (
-              <h2>* O email fornecido já está cadastrado.</h2>
+            {errorEmail.includes(2) && (
+              <h2>* O email fornecido não é válido.</h2>
             )}
+            {errorPassword.includes(2) && (
+              <h2>* A senha deve ter pelo menos 6 caracteres.</h2>
+            )}
+            {error === 409 && <h2>* O email fornecido já está cadastrado.</h2>}
             <StyleNeonButton
               type="submit"
               hover={isFormValid()}
@@ -179,6 +196,7 @@ const SignInContainer = styled.div`
     white-space: pre-line;
     color: #ff5555;
     text-shadow: 0px 0px 10px #ff5555cc, 0px 0px 3px #ff5555;
+    margin-top: 7px;
   }
   h3 {
     margin-top: 40px;
