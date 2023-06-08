@@ -1,8 +1,10 @@
+import useSignUp from "@/api/hooks/useSignUp";
 import { NeonButton } from "@/components/common/button";
 import Header from "@/components/layout/header";
 import Link from "next/link";
 import { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 export default function signUp() {
   const [email, setEmail] = useState("");
@@ -10,8 +12,14 @@ export default function signUp() {
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
+  const [error, setError] = useState();
+
+  const router = useRouter();
+
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);
+
+  const { signUpLoading, signUp } = useSignUp();
 
   function isFormValid() {
     return (
@@ -26,10 +34,24 @@ export default function signUp() {
   async function createAcount(e) {
     e.preventDefault();
     if (email !== confirmEmail) {
-      setErrorEmail(true);
+      return setErrorEmail(true);
     }
     if (password !== confirmPassword) {
-      setErrorPassword(true);
+      return setErrorPassword(true);
+    }
+
+    const body = {
+      name,
+      email,
+      password,
+    };
+
+    try {
+      const response = await signUp(body);
+      console.log(response);
+      router.push("/signin");
+    } catch (error) {
+      return setError(error.response.status);
     }
   }
 
@@ -61,11 +83,7 @@ export default function signUp() {
               onChange={(e) => setConfirmEmail(e.target.value)}
               errorNeon={errorEmail}
             />
-            {!errorEmail ? (
-              <></>
-            ) : (
-              <h2>Os campos de email e confirmar email devem ser iguais.</h2>
-            )}
+
             <Input
               placeholder="Senha"
               type="password"
@@ -80,12 +98,26 @@ export default function signUp() {
               onChange={(e) => setConfirmPassword(e.target.value)}
               errorNeon={errorPassword}
             />
+            {!errorEmail ? (
+              <></>
+            ) : (
+              <h2>* Os campos de email e confirmar email devem ser iguais.</h2>
+            )}
             {!errorPassword ? (
               <></>
             ) : (
-              <h2>Os campos de senha e confirmar senha devem ser iguais.</h2>
+              <h2>* Os campos de senha e confirmar senha devem ser iguais.</h2>
             )}
-            <StyleNeonButton type="submit" hover={isFormValid()}>
+            {error !== 409 ? (
+              <></>
+            ) : (
+              <h2>* O email fornecido já está cadastrado.</h2>
+            )}
+            <StyleNeonButton
+              type="submit"
+              hover={isFormValid()}
+              disabled={signUpLoading}
+            >
               Cadrastre-se
             </StyleNeonButton>
           </form>
