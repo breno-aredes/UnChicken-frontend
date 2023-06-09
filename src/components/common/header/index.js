@@ -1,4 +1,4 @@
-import { NeonButton } from "@/components/common/button";
+import { NeonButton } from "@/components/common/StyleButton";
 import { BarNeon, HeaderContainer, LogBar, Logo } from "./style";
 import Link from "next/link";
 
