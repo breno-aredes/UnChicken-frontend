@@ -13,14 +13,14 @@ export default function signUp() {
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-  const [error, setError] = useState();
 
   const router = useRouter();
 
   const [errorEmail, setErrorEmail] = useState([]);
   const [errorPassword, setErrorPassword] = useState([]);
+  const [error, setError] = useState();
 
-  const { signUpLoading, signUp } = useSignUp();
+  const { signUp } = useSignUp();
 
   function isFormValid() {
     return (
@@ -66,8 +66,7 @@ export default function signUp() {
     };
 
     try {
-      const response = await signUp(body);
-      console.log(response);
+      await signUp(body);
       router.push("/signin");
     } catch (error) {
       return setError(error.response.status);
@@ -118,10 +117,10 @@ export default function signUp() {
               errorNeon={errorPassword.length > 0}
             />
             {errorEmail.includes(1) && (
-              <h2>* Os campos de email e confirmar email devem ser iguais.</h2>
+              <h2>* Os campos de email devem ser iguais.</h2>
             )}
             {errorPassword.includes(1) && (
-              <h2>* Os campos de senha e confirmar senha devem ser iguais.</h2>
+              <h2>* Os campos de senha devem ser iguais.</h2>
             )}
             {errorEmail.includes(2) && (
               <h2>* O email fornecido não é válido.</h2>
@@ -133,7 +132,7 @@ export default function signUp() {
             <StyleNeonButton
               type="submit"
               hover={isFormValid()}
-              disabled={signUpLoading}
+              disabled={!isFormValid()}
             >
               Cadrastre-se
             </StyleNeonButton>
@@ -151,6 +150,7 @@ export default function signUp() {
 
 const StyleNeonButton = styled(NeonButton)`
   margin-top: 20px;
+  font-size: 15px;
 `;
 
 const Body = styled.div`
@@ -192,7 +192,7 @@ const SignInContainer = styled.div`
     font-weight: bold;
   }
   h2 {
-    font-size: 10px;
+    font-size: 12px;
     white-space: pre-line;
     color: #ff5555;
     text-shadow: 0px 0px 10px #ff5555cc, 0px 0px 3px #ff5555;
@@ -202,7 +202,7 @@ const SignInContainer = styled.div`
     margin-top: 40px;
     padding-bottom: 10px;
     color: #808080;
-    font-size: 15 px;
+    font-size: 15px;
     font-weight: bold;
     white-space: pre-line;
 
@@ -221,6 +221,7 @@ const SignInContainer = styled.div`
 const Input = styled.input`
   width: 300px;
   padding: 2px 10px;
+  font-size: 15px;
   color: ${(props) => (props.errorNeon ? "#ff5555" : "#00d9ff")};
   border: none;
   border-bottom: 2px solid
