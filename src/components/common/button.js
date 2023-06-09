@@ -11,6 +11,7 @@ export const NeonButton = styled.button`
   color: #808080;
   border: 2px solid #808080;
   font-family: "Roboto", sans-serif;
+  font-size: 15px;
 
   ${(props) =>
     props.hover !== false &&
