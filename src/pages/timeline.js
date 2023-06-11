@@ -1,17 +1,18 @@
+import Dashboard from "@/components/common/dashboard/dashboard";
 import Header from "@/components/common/header";
+import TimeLine from "@/components/layout/timeline/timeline";
 import styled from "styled-components";
 
 export default function timeLine() {
   return (
-    <>
-      <Header></Header>
-      <Body></Body>
-    </>
+    <Container>
+      <Header />
+      <TimeLine dash={true} />
+      <Dashboard />
+    </Container>
   );
 }
 
-const Body = styled.div`
-  margin-top: 80px;
-  background-color: #000000;
-  height: 100vh;
+const Container = styled.div`
+  display: flex;
 `;
