@@ -113,16 +113,18 @@ export default function SignUp() {
             errorNeon={errorPassword.length > 0}
           />
           {errorEmail.includes(1) && (
-            <h2>* Os campos de email devem ser iguais.</h2>
+            <h2>* Os campos de e-mail devem ser iguais.</h2>
           )}
           {errorPassword.includes(1) && (
             <h2>* Os campos de senha devem ser iguais.</h2>
           )}
-          {errorEmail.includes(2) && <h2>* O email fornecido não é válido.</h2>}
+          {errorEmail.includes(2) && (
+            <h2>* O e-mail fornecido não é válido.</h2>
+          )}
           {errorPassword.includes(2) && (
             <h2>* A senha deve ter pelo menos 6 caracteres.</h2>
           )}
-          {error === 409 && <h2>* O email fornecido já está cadastrado.</h2>}
+          {error === 409 && <h2>* O e-mail fornecido já está cadastrado.</h2>}
           <StyleNeonButton
             type="submit"
             hover={isFormValid()}

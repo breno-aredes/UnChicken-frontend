@@ -80,7 +80,7 @@ export default function SignIn() {
             onChange={(e) => setPassword(e.target.value)}
             errorNeon={errorPassword === true || error === 401}
           />
-          {errorEmail && <h2>* O email fornecido não é válido.</h2>}
+          {errorEmail && <h2>* O e-mail fornecido não é válido.</h2>}
           {errorPassword && (
             <h2>* A senha deve ter pelo menos 6 caracteres.</h2>
           )}

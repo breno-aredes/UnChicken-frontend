@@ -11,7 +11,7 @@ export const HeaderContainer = styled.div`
   box-sizing: border-box;
   border-bottom: 2px solid #00d9ff;
   color: #00d9ff;
-  box-shadow: 0 0 50px 5px #00d9ff, 0 0 20px #00d9ffc0;
+  box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0;
   position: fixed;
   top: 0;
   z-index: 1;
@@ -35,7 +35,7 @@ export const Logo = styled.div`
     height: 60px;
     border-radius: 40px;
     border: 2px solid #00d9ff;
-    box-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+    box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff;
   }
 `;
 
