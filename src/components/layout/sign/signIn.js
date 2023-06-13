@@ -1,18 +1,25 @@
-import { tokenSaveData } from "@/api/auth";
+import { tokenExist, tokenSaveData } from "@/api/auth";
 import useSignIn from "@/api/hooks/useSignIn";
 
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { isEmail, isLength } from "validator";
 import { Body, Input, SignInContainer, StyleNeonButton } from "./styled";
 
 export default function SignIn() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = tokenExist();
+    if (token) {
+      router.push("/");
+    }
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const router = useRouter();
 
   const [errorEmail, setErrorEmail] = useState(false);
   const [errorPassword, setErrorPassword] = useState(false);

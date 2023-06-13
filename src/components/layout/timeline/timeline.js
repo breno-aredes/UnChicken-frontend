@@ -1,6 +1,18 @@
+import { tokenExist } from "@/api/auth";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function TimeLine({ dash }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = tokenExist();
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
+
   return (
     <Body>
       <TimelineContainer dash={dash}>
@@ -24,7 +36,7 @@ export default function TimeLine({ dash }) {
 const Body = styled.div`
   background-color: #000000;
   min-height: 100vh;
-  max-height: 100%;
+  max-height: 100vh;
   padding: 5% 20% 10% 5%;
   box-sizing: border-box;
   display: flex;
@@ -32,11 +44,11 @@ const Body = styled.div`
 `;
 
 const TimelineContainer = styled.main`
-  margin-top: 80px;
+  margin-top: 40px;
   background-color: red;
   width: 100;
   min-height: 600px;
-  height: 100%;
+  height: 100;
   background-color: black;
   border: 2px solid #00d9ff;
   color: #00d9ff;

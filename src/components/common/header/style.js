@@ -1,4 +1,12 @@
 import styled from "styled-components";
+import { VscThreeBars } from "react-icons/vsc";
+
+export const Icon = styled(VscThreeBars)`
+  ${({ iconClicked }) =>
+    iconClicked
+      ? "color: #00d9ff; text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0; "
+      : "color: #808080;"}
+`;
 
 export const HeaderContainer = styled.div`
   font-size: 30px;
@@ -42,6 +50,31 @@ export const Logo = styled.div`
 
 export const LogBar = styled.div`
   display: flex;
+  align-items: center;
+  h1 {
+    margin-right: 10px;
+
+    font-size: 20px;
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+
+    ${({ iconClicked }) =>
+      iconClicked
+        ? "text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;color: #00d9ff; "
+        : "color: #808080;"}
+  }
+  img {
+    margin-right: 10px;
+    height: 60px;
+    border-radius: 40px;
+    border: 2px solid #808080;
+    ${({ iconClicked }) =>
+      iconClicked
+        ? "border: 2px solid #00d9ff; box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff; "
+        : "color: #808080;"}
+    :hover {
+    }
+  }
 `;
 
 export const BarNeon = styled.div`

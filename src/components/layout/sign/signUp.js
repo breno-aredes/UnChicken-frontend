@@ -1,18 +1,26 @@
 import { Body, Input, SignInContainer, StyleNeonButton } from "./styled";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { isEmail, isLength } from "validator";
 import useSignUp from "@/api/hooks/useSignUp";
+import { tokenExist } from "@/api/auth";
 
 export default function SignUp() {
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = tokenExist();
+    if (token) {
+      router.push("/");
+    }
+  }, []);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confirmEmail, setConfirmEmail] = useState("");
-
-  const router = useRouter();
 
   const [errorEmail, setErrorEmail] = useState([]);
   const [errorPassword, setErrorPassword] = useState([]);

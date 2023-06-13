@@ -25,12 +25,10 @@ export function userName() {
 
 //quando o token expirar ou não existir
 export function tokenExist() {
-  const router = useRouter();
-
-  const token = localStorage.token;
+  const token = typeof localStorage !== "undefined" ? localStorage.token : null;
 
   if (!token) {
-    router.push("/signin");
+    return false;
   }
 
   const expTime = parseInt(localStorage.exp);
@@ -38,8 +36,8 @@ export function tokenExist() {
 
   if (expTime < currentTime) {
     localStorage.clear();
-    router.push("/signin");
+    return false;
   }
 
-  return;
+  return true;
 }
