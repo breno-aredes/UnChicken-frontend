@@ -1,35 +1,53 @@
 import { NeonButton } from "@/components/common/StyleButton";
-import { BarNeon, HeaderContainer, LogBar, Logo } from "./style";
+import { BarNeon, HeaderContainer, Icon, LogBar, Logo } from "./style";
 import Link from "next/link";
-import { VscThreeBars } from "react-icons/vsc";
+import { useEffect, useState } from "react";
+import SideBar from "../sidebar/sidebar";
+import { tokenExist } from "@/api/auth";
 
-export default function Header({ stepTwo, iconClicked, setIconClicked }) {
+export default function Header() {
+  const [stepTwo, setStepTwo] = useState(false);
+  const [iconClicked, setIconClicked] = useState(false);
+
+  useEffect(() => {
+    setStepTwo(tokenExist());
+    setIconClicked(false);
+  }, []);
+
   return (
-    <HeaderContainer>
-      <Link style={{ textDecoration: "none" }} href="/">
-        <Logo>
-          <img src="/UnChickenApp2.0.jpg" alt="UnChicken Logo" />
-          <h1>UnChicken</h1>
-        </Logo>
-      </Link>
+    <>
+      <HeaderContainer>
+        <Link style={{ textDecoration: "none" }} href="/">
+          <Logo>
+            <>
+              <img src="/UnChickenApp2.0.jpg" alt="UnChicken Logo" />
+              <h1>UnChicken</h1>
+            </>
+          </Logo>
+        </Link>
 
-      {!stepTwo ? (
-        <LogBar>
-          <Link href="/signin">
-            <NeonButton>Entrar</NeonButton>
-          </Link>
-          <BarNeon></BarNeon>
-          <Link href="/signup">
-            <NeonButton>Cadastre-se</NeonButton>
-          </Link>
-        </LogBar>
-      ) : (
-        <>
-          <VscThreeBars
+        {!stepTwo ? (
+          <LogBar>
+            <Link href="/signin">
+              <NeonButton>Entrar</NeonButton>
+            </Link>
+            <BarNeon></BarNeon>
+            <Link href="/signup">
+              <NeonButton>Cadastre-se</NeonButton>
+            </Link>
+          </LogBar>
+        ) : (
+          <LogBar
+            iconClicked={iconClicked}
             onClick={() => setIconClicked(!iconClicked)}
-          ></VscThreeBars>
-        </>
-      )}
-    </HeaderContainer>
+          >
+            <img src="iconImage.jpg" alt="UnChicken Logo" />
+            <h1>UserName</h1>
+            <Icon iconClicked={iconClicked}></Icon>
+          </LogBar>
+        )}
+      </HeaderContainer>
+      <SideBar iconClicked={iconClicked}></SideBar>
+    </>
   );
 }
