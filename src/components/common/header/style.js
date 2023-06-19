@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { VscThreeBars } from "react-icons/vsc";
 
 export const Icon = styled(VscThreeBars)`
+  margin-right: 20px;
   ${({ iconClicked }) =>
     iconClicked
       ? "color: #00d9ff; text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0; "
@@ -11,7 +12,7 @@ export const Icon = styled(VscThreeBars)`
 export const HeaderContainer = styled.div`
   font-size: 30px;
   background-color: #000000;
-  height: 80px;
+  height: 65px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,9 +32,9 @@ export const Logo = styled.div`
   align-items: center;
 
   h1 {
-    margin-left: 20px;
+    margin-left: 10px;
     font-family: "Roboto", sans-serif;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: bold;
     -webkit-text-stroke: 1px #00d9ff;
     -webkit-text-fill-color: transparent;
@@ -41,7 +42,8 @@ export const Logo = styled.div`
   }
 
   img {
-    height: 60px;
+    height: 50px;
+    width: 50px;
     border-radius: 40px;
     border: 2px solid #00d9ff;
     box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff;
@@ -64,13 +66,15 @@ export const LogBar = styled.div`
         : "color: #808080;"}
   }
   img {
-    margin-right: 10px;
-    height: 60px;
+    margin-right: 12px;
+    height: 50px;
+    width: 50px;
     border-radius: 40px;
+    background-color: #808080;
     border: 2px solid #808080;
     ${({ iconClicked }) =>
       iconClicked
-        ? "border: 2px solid #00d9ff; box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff; "
+        ? "border: 2px solid #00d9ff; box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff; background-color: #00d9ff; "
         : "color: #808080;"}
     :hover {
     }

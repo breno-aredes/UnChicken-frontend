@@ -1,5 +1,4 @@
 import jwt_decode from "jwt-decode";
-import { useRouter } from "next/router";
 
 //salva o token e os dados no local storage
 export function tokenSaveData(token) {
