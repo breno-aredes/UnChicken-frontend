@@ -41,7 +41,6 @@ export default function Header() {
             iconClicked={iconClicked}
             onClick={() => setIconClicked(!iconClicked)}
           >
-            <img src="userimg.png" alt="UnChicken Logo" />
             <h1>UserName</h1>
             <Icon iconClicked={iconClicked}></Icon>
           </LogBar>

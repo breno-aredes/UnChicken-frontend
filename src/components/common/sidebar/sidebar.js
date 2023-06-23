@@ -3,14 +3,26 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { AiOutlineCaretRight } from "react-icons/ai";
 import { useState } from "react";
 
+import { useRouter } from "next/router";
+
 export default function SideBar({ iconClicked }) {
   const [openAccount, setOpenAccount] = useState(false);
   const [openWorkouts, setOpenWorkouts] = useState(false);
   const [openServices, setOpenServices] = useState(false);
 
+  const router = useRouter();
+
   function logout() {
     localStorage.clear();
     window.location.reload();
+  }
+
+  function redirectPg() {
+    router.push("/shortly");
+  }
+
+  function redirectToTraining() {
+    router.push("/training");
   }
 
   return (
@@ -22,8 +34,8 @@ export default function SideBar({ iconClicked }) {
       </Bar>
       {openAccount && (
         <BarTwo>
-          <p>Editar conta</p>
-          <p>Mudar senha</p>
+          <p onClick={() => redirectPg()}>Editar conta</p>
+          <p onClick={() => redirectPg()}>Mudar senha</p>
         </BarTwo>
       )}
 
@@ -39,9 +51,9 @@ export default function SideBar({ iconClicked }) {
       </Bar>
       {openWorkouts && (
         <BarTwo>
-          <p>Explorar</p>
-          <p>Minha ficha</p>
-          <p>Meus treinos</p>
+          <p onClick={() => redirectToTraining()}>Minhas fichas</p>
+          <p onClick={() => redirectPg()}>Meus treinos</p>
+          <p onClick={() => redirectPg()}>Explorar</p>
         </BarTwo>
       )}
 
@@ -57,8 +69,8 @@ export default function SideBar({ iconClicked }) {
       </Bar>
       {openServices && (
         <BarTwo>
-          <p>Personal</p>
-          <p>Nutricionista</p>
+          <p onClick={() => redirectPg()}>Personal trainers</p>
+          <p onClick={() => redirectPg()}>Nutricionistas</p>
         </BarTwo>
       )}
 
@@ -76,9 +88,10 @@ export default function SideBar({ iconClicked }) {
 }
 
 const BarTwo = styled.div`
+  cursor: pointer;
   margin-top: 10px;
   width: 90%;
-
+  font-family: "Roboto", sans-serif;
   p {
     padding: 10px;
     border-top: solid 1px #00d9ff;
@@ -92,10 +105,12 @@ const BarTwo = styled.div`
 `;
 
 const Bar = styled.div`
+  cursor: pointer;
   width: 85%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   h1 {
     margin-right: 10px;
     font-size: 20px;

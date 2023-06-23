@@ -3,6 +3,7 @@ import { VscThreeBars } from "react-icons/vsc";
 
 export const Icon = styled(VscThreeBars)`
   margin-right: 20px;
+  cursor: pointer;
   ${({ iconClicked }) =>
     iconClicked
       ? "color: #00d9ff; text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0; "
@@ -17,7 +18,7 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0px 30px 0px 30px;
+  padding: 0px 0px 0px 30px;
   box-sizing: border-box;
   border-bottom: 2px solid #00d9ff;
   color: #00d9ff;
@@ -53,9 +54,12 @@ export const Logo = styled.div`
 export const LogBar = styled.div`
   display: flex;
   align-items: center;
+
+  width: 300px;
+  justify-content: right;
   h1 {
     margin-right: 10px;
-
+    cursor: pointer;
     font-size: 20px;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
