@@ -4,7 +4,7 @@ import TimeLine from "@/components/layout/timeline/timeline";
 
 import styled from "styled-components";
 
-export default function timeLine() {
+export default function training() {
   return (
     <Container>
       <Header />

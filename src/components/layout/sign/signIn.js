@@ -60,7 +60,7 @@ export default function SignIn() {
     try {
       const token = await signIn(body);
       tokenSaveData(token);
-      router.push("/timeline");
+      router.push("/training");
     } catch (error) {
       return setError(error.response.status);
     }
