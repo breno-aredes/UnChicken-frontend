@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { VscThreeBars } from "react-icons/vsc";
 
 export const Icon = styled(VscThreeBars)`
-  margin-right: 20px;
   cursor: pointer;
   ${({ iconClicked }) =>
     iconClicked
@@ -54,6 +53,7 @@ export const Logo = styled.div`
 export const LogBar = styled.div`
   display: flex;
   align-items: center;
+  margin-right: 30px;
 
   width: 300px;
   justify-content: right;

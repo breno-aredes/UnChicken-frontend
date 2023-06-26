@@ -18,7 +18,7 @@ export function userId() {
 
 //para usar o nome do usuario
 export function userName() {
-  const userName = localStorage.userName;
+  const userName = typeof window !== "undefined" ? localStorage.userName : "";
   return userName;
 }
 

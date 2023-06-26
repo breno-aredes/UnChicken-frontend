@@ -14,7 +14,7 @@ export default function SideBar({ iconClicked }) {
 
   function logout() {
     localStorage.clear();
-    window.location.reload();
+    router.push("/");
   }
 
   function redirectPg() {
@@ -52,7 +52,8 @@ export default function SideBar({ iconClicked }) {
       {openWorkouts && (
         <BarTwo>
           <p onClick={() => redirectToTraining()}>Minhas fichas</p>
-          <p onClick={() => redirectPg()}>Meus treinos</p>
+          <p onClick={() => router.push("/createtraining")}>Criar ficha</p>
+          <p onClick={() => redirectPg()}>Fichas que eu criei</p>
           <p onClick={() => redirectPg()}>Explorar</p>
         </BarTwo>
       )}
@@ -92,7 +93,10 @@ const BarTwo = styled.div`
   margin-top: 10px;
   width: 90%;
   font-family: "Roboto", sans-serif;
+
   p {
+    margin-top: 1px;
+    margin-bottom: 1px;
     padding: 10px;
     border-top: solid 1px #00d9ff;
     font-size: 15px;
