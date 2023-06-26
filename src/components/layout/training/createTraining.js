@@ -89,19 +89,19 @@ export default function CreateTraining() {
                 }
               />
               <Input
-                placeholder="Repetições"
-                style={{ width: "100px" }}
-                value={exercises[index].repetitions}
-                onChange={(e) =>
-                  handleExerciseChange(index, "repetitions", e.target.value)
-                }
-              />
-              <Input
                 placeholder="Séries"
                 style={{ width: "100px" }}
                 value={exercises[index].series}
                 onChange={(e) =>
                   handleExerciseChange(index, "series", e.target.value)
+                }
+              />
+              <Input
+                placeholder="Repetições"
+                style={{ width: "100px" }}
+                value={exercises[index].repetitions}
+                onChange={(e) =>
+                  handleExerciseChange(index, "repetitions", e.target.value)
                 }
               />
             </SequenceExercices>
