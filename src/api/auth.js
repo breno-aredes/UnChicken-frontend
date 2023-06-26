@@ -10,9 +10,15 @@ export function tokenSaveData(token) {
   localStorage.setItem("token", token);
 }
 
+//para usar o token
+export function useToken() {
+  const token = typeof window !== "undefined" ? localStorage.token : "";
+  return token;
+}
+
 //para usar o id do usuario
 export function userId() {
-  const userId = localStorage.userId;
+  const userId = typeof window !== "undefined" ? localStorage.userId : "";
   return userId;
 }
 
