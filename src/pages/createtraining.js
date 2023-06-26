@@ -1,13 +1,13 @@
 import Header from "@/components/common/header";
-import Training from "@/components/layout/training/training";
+import CreateTraining from "@/components/layout/training/createTraining";
 
 import styled from "styled-components";
 
-export default function training() {
+export default function createTraining() {
   return (
     <Container>
       <Header />
-      <Training></Training>
+      <CreateTraining></CreateTraining>
     </Container>
   );
 }

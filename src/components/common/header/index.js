@@ -3,11 +3,12 @@ import { BarNeon, HeaderContainer, Icon, LogBar, Logo } from "./style";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import SideBar from "../sidebar/sidebar";
-import { tokenExist } from "@/api/auth";
+import { tokenExist, userName } from "@/api/auth";
 
 export default function Header() {
   const [stepTwo, setStepTwo] = useState(false);
   const [iconClicked, setIconClicked] = useState(false);
+  const user = userName();
 
   useEffect(() => {
     setStepTwo(tokenExist());
@@ -41,7 +42,7 @@ export default function Header() {
             iconClicked={iconClicked}
             onClick={() => setIconClicked(!iconClicked)}
           >
-            <h1>UserName</h1>
+            <h1>{user}</h1>
             <Icon iconClicked={iconClicked}></Icon>
           </LogBar>
         )}
