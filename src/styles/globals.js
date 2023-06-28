@@ -28,6 +28,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	background-color:#333333;
+	scrollbar-width: thin;
 }
 ol, ul {
 	list-style: none;
@@ -53,6 +54,26 @@ h1{
 * {
 	box-sizing: border-box;
 }
+ /* Define a aparência da barra de rolagem */
+ ::-webkit-scrollbar {
+    width: 10px;
+	background-color: #333333;
+    border-radius: 5px;
+  }
+
+  /* Define a aparência do polegar da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 5px;
+
+  }
+
+  /* Define a aparência do polegar da barra de rolagem ao passar o mouse sobre ele */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #00d9ff;
+	box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0;
+  }
+
 `;
 
 export default GlobalStyle;

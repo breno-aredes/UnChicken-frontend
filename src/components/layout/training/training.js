@@ -25,6 +25,10 @@ export default function Training() {
     }
   }, []);
 
+  const handleTrainingClick = (trainingId) => {
+    router.push(`/training/${trainingId}`);
+  };
+
   return (
     <Body>
       <h1>Minhas fichas</h1>
@@ -45,7 +49,10 @@ export default function Training() {
       ) : (
         <ListTraining>
           {trainings.map((training) => (
-            <TrainingContainer key={training.id}>
+            <TrainingContainer
+              key={training.id}
+              onClick={() => handleTrainingClick(training.id)}
+            >
               <p>Nome do treino: {training.name}</p>
               <p>Tipo do treino: {training.type}</p>
               <p>Criado por: {training.user.name}</p>
@@ -92,11 +99,12 @@ const TrainingContainer = styled.div`
 `;
 
 const Body = styled.div`
+  margin-top: 65px;
   background-color: #000000;
   min-height: 100vh;
   max-height: 100vh;
   width: 100%;
-  padding: 5% 20% 10% 5%;
+  padding: 3% 20% 10% 5%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
