@@ -63,8 +63,8 @@ export default function CreateTraining() {
               <option value="" disabled>
                 Tipo de ficha
               </option>
-              <option value="circuito">Circuito</option>
-              <option value="serie">Série</option>
+              <option value="circuit">Circuito</option>
+              <option value="series">Série</option>
             </Select>
           </TypeContainer>
           <TextArea
@@ -248,18 +248,19 @@ const ExerciceContainer = styled.div`
   margin-left: 50px;
 `;
 
-const Body = styled.div`
+export const Body = styled.div`
+  margin-top: 65px;
   background-color: #000000;
   min-height: 100vh;
   max-height: 100vh;
   width: 100%;
-  padding: 5% 20% 10% 5%;
+  padding: 3% 20% 10% 5%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   h1 {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     font-size: 25px;
     font-weight: bold;
     font-family: "Roboto", sans-serif;
