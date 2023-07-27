@@ -17,6 +17,8 @@ export default function CreateTraining() {
   const [countExercises, setCountExercises] = useState(1);
   const { createTraining } = useCreateTrainings();
 
+  const [circuitSeries, setCircuitSeries] = useState("");
+
   useEffect(() => {
     const token = tokenExist();
     if (!token) {
@@ -44,6 +46,13 @@ export default function CreateTraining() {
   function handleExerciseChange(index, field, value) {
     const updatedExercises = [...exercises];
     updatedExercises[index][field] = value;
+
+    if (type === "circuit") {
+      updatedExercises.forEach((exercise) => {
+        exercise.series = circuitSeries;
+      });
+    }
+
     setExercises(updatedExercises);
   }
 
@@ -61,11 +70,9 @@ export default function CreateTraining() {
       exercises: convertedExercises,
     };
 
-    console.log(data);
-
     try {
       await createTraining(data);
-      router.push("/");
+      router.push("/training");
     } catch (error) {
       console.log(error);
     }
@@ -103,53 +110,69 @@ export default function CreateTraining() {
         <BarNeon></BarNeon>
         <ExerciceContainer>
           <h2>Exercícios</h2>
+          {type === "" ? (
+            <P>selecione o tipo de ficha</P>
+          ) : (
+            <>
+              {type === "circuit" && (
+                <Input
+                  placeholder="Séries do circuito"
+                  style={{ width: "150px" }}
+                  value={circuitSeries}
+                  onChange={(e) => setCircuitSeries(e.target.value)}
+                />
+              )}
 
-          {Array.from({ length: countExercises }).map((_, index) => (
-            <SequenceExercices key={index}>
-              <Input
-                placeholder="Nome do exercício"
-                type="text"
-                value={exercises[index].name}
-                onChange={(e) =>
-                  handleExerciseChange(index, "name", e.target.value)
-                }
-              />
-              <Input
-                placeholder="Séries"
-                style={{ width: "100px" }}
-                value={exercises[index].series}
-                onChange={(e) =>
-                  handleExerciseChange(index, "series", e.target.value)
-                }
-              />
-              <Input
-                placeholder="Repetições"
-                style={{ width: "100px" }}
-                value={exercises[index].repetitions}
-                onChange={(e) =>
-                  handleExerciseChange(index, "repetitions", e.target.value)
-                }
-              />
-            </SequenceExercices>
-          ))}
+              {Array.from({ length: countExercises }).map((_, index) => (
+                <SequenceExercices key={index}>
+                  <Input
+                    placeholder="Nome do exercício"
+                    type="text"
+                    value={exercises[index].name}
+                    onChange={(e) =>
+                      handleExerciseChange(index, "name", e.target.value)
+                    }
+                  />
+                  {type !== "circuit" && (
+                    <Input
+                      placeholder="Séries"
+                      style={{ width: "100px" }}
+                      value={exercises[index].series}
+                      onChange={(e) =>
+                        handleExerciseChange(index, "series", e.target.value)
+                      }
+                    />
+                  )}
+                  <Input
+                    placeholder="Repetições"
+                    style={{ width: "100px" }}
+                    value={exercises[index].repetitions}
+                    onChange={(e) =>
+                      handleExerciseChange(index, "repetitions", e.target.value)
+                    }
+                  />
+                </SequenceExercices>
+              ))}
 
-          <ButtonContainer>
-            {" "}
-            <IconContainer onClick={() => addExercise()}>
-              <Icon></Icon>
-              <h3> Adicionar exercício </h3>
-            </IconContainer>
-            <IconContainer
-              onClick={() => removeExercise()}
-              disabled={countExercises === 1}
-            >
-              <Icontwo disabled={countExercises === 1}></Icontwo>
-              <h3> Remover exercício </h3>
-            </IconContainer>
-          </ButtonContainer>
-          <CreateButton onClick={() => postTraining()}>
-            Criar Ficha
-          </CreateButton>
+              <ButtonContainer>
+                <IconContainer onClick={() => addExercise()}>
+                  <Icon></Icon>
+                  <h3> Adicionar exercício </h3>
+                </IconContainer>
+                <IconContainer
+                  onClick={() => removeExercise()}
+                  disabled={countExercises === 1}
+                >
+                  <Icontwo disabled={countExercises === 1}></Icontwo>
+                  <h3> Remover exercício </h3>
+                </IconContainer>
+              </ButtonContainer>
+
+              <CreateButton onClick={() => postTraining()}>
+                Criar Ficha
+              </CreateButton>
+            </>
+          )}
         </ExerciceContainer>
       </Container>
     </Body>
@@ -254,6 +277,13 @@ const TypeContainer = styled.div`
   margin-bottom: 40px;
 `;
 
+const P = styled.p`
+  color: #808080;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto", sans-serif;
+`;
+
 const Select = styled.select`
   height: 30px;
   width: 125px;
@@ -279,6 +309,9 @@ const Select = styled.select`
 
 const ExerciceContainer = styled.div`
   margin-left: 50px;
+  h1 {
+    color: red;
+  }
 `;
 
 export const Body = styled.div`

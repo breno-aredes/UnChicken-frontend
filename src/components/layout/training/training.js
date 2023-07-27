@@ -37,13 +37,13 @@ export default function Training() {
           <h2>Você ainda não possui nenhuma ficha de treino.</h2>
           <h2>
             Se deseja criar uma ficha{" "}
-            <span onClick={() => router.push("/createtraining")}>
+            <Span onClick={() => router.push("/createtraining")}>
               CLIQUE AQUI!
-            </span>
+            </Span>
           </h2>
           <h2>
             Se deseja ver fichas criadas por outros usuários{" "}
-            <span onClick={() => router.push("/shortly")}>CLIQUE AQUI!</span>
+            <Span onClick={() => router.push("/shortly")}>CLIQUE AQUI!</Span>
           </h2>
         </>
       ) : (
@@ -74,6 +74,12 @@ export default function Training() {
     </Body>
   );
 }
+
+const Span = styled.span`
+  text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+  color: #00d9ff;
+  cursor: pointer;
+`;
 
 const ListTraining = styled.div`
   display: flex;
