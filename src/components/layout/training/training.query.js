@@ -44,7 +44,7 @@ export function TrainingQuery() {
 
       <h1>{training.name}</h1>
 
-      {training.type === "circuito" && (
+      {training.type === "circuit" && (
         <>
           <PZero>
             Este treino é feito em {training.exercises[0].series} circuitos

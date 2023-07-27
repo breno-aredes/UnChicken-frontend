@@ -53,9 +53,20 @@ export default function Training() {
               key={training.id}
               onClick={() => handleTrainingClick(training.id)}
             >
-              <p>Nome do treino: {training.name}</p>
-              <p>Tipo do treino: {training.type}</p>
-              <p>Criado por: {training.user.name}</p>
+              <p>
+                <span>Nome do treino: </span>
+                {training.name.length > 35
+                  ? training.name.substring(0, 35) + "..."
+                  : training.name}
+              </p>
+              <p>
+                <span>Tipo do treino: </span>
+                {training.type === "circuit" ? "Circuito" : "Série"}
+              </p>
+              <p>
+                {" "}
+                <span>Criado por: </span> {training.user.name}
+              </p>
             </TrainingContainer>
           ))}
         </ListTraining>
@@ -66,6 +77,7 @@ export default function Training() {
 
 const ListTraining = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const TrainingContainer = styled.div`
@@ -73,16 +85,17 @@ const TrainingContainer = styled.div`
   background-color: #000000;
   padding: 15px 10px 15px 15px;
   width: 280px;
-  height: 100px;
+  height: 110px;
   border-radius: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   margin-right: 30px;
-  margin-bottom: 30px;
   border: 2px solid #808080;
   display: flex;
   flex-direction: column;
   align-items: start;
   justify-content: space-between;
+  word-wrap: break-word;
+  word-break: break-all;
   :hover {
     border: 2px solid #00d9ff;
     box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0;
@@ -92,9 +105,12 @@ const TrainingContainer = styled.div`
     }
   }
   p {
+    line-height: 20px;
     color: #bdbdbd;
-    margin-top: 2px;
     font-family: "Roboto", sans-serif;
+  }
+  span {
+    font-weight: bold;
   }
 `;
 
@@ -124,11 +140,5 @@ const Body = styled.div`
     font-weight: bold;
     font-family: "Roboto", sans-serif;
     color: #848484;
-  }
-
-  span {
-    text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
-    color: #00d9ff;
-    cursor: pointer;
   }
 `;
