@@ -1,4 +1,4 @@
-import { tokenExist, useToken } from "@/api/auth";
+import { tokenExist } from "@/api/auth";
 import useGetTrainings from "@/api/hooks/useGetTraining";
 
 import { useRouter } from "next/router";
@@ -92,7 +92,7 @@ const TrainingContainer = styled.div`
     }
   }
   p {
-    color: #808080;
+    color: #bdbdbd;
     margin-top: 2px;
     font-family: "Roboto", sans-serif;
   }
