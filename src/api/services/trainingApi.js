@@ -18,7 +18,17 @@ async function trainingById(token, trainingId) {
   return response.data;
 }
 
+async function createTraining(data, token) {
+  const response = await api.post("/training", data, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
 export default {
   getUserTrainings,
   trainingById,
+  createTraining,
 };

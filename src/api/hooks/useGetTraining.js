@@ -10,7 +10,7 @@ export default function useGetTrainings() {
     loading: trainingLoading,
     error: trainingError,
     act: getTraining,
-  } = useAsync(() => trainingApi.getUserTrainings(token));
+  } = useAsync(() => trainingApi.getUserTrainings(token), false);
 
   return {
     training,
