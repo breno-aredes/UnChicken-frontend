@@ -4,16 +4,18 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
 import { NeonButton } from "@/components/common/StyleButton";
+import useCreateTrainings from "@/api/hooks/useCreateTraining";
 
 export default function CreateTraining() {
   const router = useRouter();
   const [trainingName, setTrainingName] = useState("");
   const [exercises, setExercises] = useState([
-    { ExerciceName: "", repetitions: "", series: "" },
+    { name: "", repetitions: "", series: "" },
   ]);
   const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [countExercises, setCountExercises] = useState(1);
+  const { createTraining } = useCreateTrainings();
 
   useEffect(() => {
     const token = tokenExist();
@@ -26,7 +28,7 @@ export default function CreateTraining() {
     setCountExercises(countExercises + 1);
     setExercises((prevExercises) => [
       ...prevExercises,
-      { ExerciceName: "", repetitions: "", series: "" },
+      { name: "", repetitions: "", series: "" },
     ]);
   }
 
@@ -45,9 +47,28 @@ export default function CreateTraining() {
     setExercises(updatedExercises);
   }
 
-  function postExercicies() {
-    console.log(type);
-    console.log(exercises);
+  async function postTraining() {
+    const convertedExercises = exercises.map((e) => ({
+      ...e,
+      repetitions: parseInt(e.repetitions, 10),
+      series: parseInt(e.series, 10),
+    }));
+
+    const data = {
+      name: trainingName,
+      type,
+      description,
+      exercises: convertedExercises,
+    };
+
+    console.log(data);
+
+    try {
+      await createTraining(data);
+      router.push("/");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -87,10 +108,10 @@ export default function CreateTraining() {
             <SequenceExercices key={index}>
               <Input
                 placeholder="Nome do exercício"
-                type="ExerciceName"
-                value={exercises[index].ExerciceName}
+                type="text"
+                value={exercises[index].name}
                 onChange={(e) =>
-                  handleExerciseChange(index, "ExerciceName", e.target.value)
+                  handleExerciseChange(index, "name", e.target.value)
                 }
               />
               <Input
@@ -126,7 +147,7 @@ export default function CreateTraining() {
               <h3> Remover exercício </h3>
             </IconContainer>
           </ButtonContainer>
-          <CreateButton onClick={() => postExercicies()}>
+          <CreateButton onClick={() => postTraining()}>
             Criar Ficha
           </CreateButton>
         </ExerciceContainer>
