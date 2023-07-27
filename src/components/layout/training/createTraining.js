@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { FiPlusSquare, FiMinusSquare } from "react-icons/fi";
+import { NeonButton } from "@/components/common/StyleButton";
 
 export default function CreateTraining() {
   const router = useRouter();
@@ -10,7 +11,7 @@ export default function CreateTraining() {
   const [exercises, setExercises] = useState([
     { ExerciceName: "", repetitions: "", series: "" },
   ]);
-  const [tipo, setTipo] = useState("");
+  const [type, setType] = useState("");
   const [description, setDescription] = useState("");
   const [countExercises, setCountExercises] = useState(1);
 
@@ -42,6 +43,10 @@ export default function CreateTraining() {
     const updatedExercises = [...exercises];
     updatedExercises[index][field] = value;
     setExercises(updatedExercises);
+  }
+
+  function postExercicies() {
+    console.log(type);
     console.log(exercises);
   }
 
@@ -59,7 +64,7 @@ export default function CreateTraining() {
               value={trainingName}
               onChange={(e) => setTrainingName(e.target.value)}
             />
-            <Select value={tipo} onChange={(e) => setTipo(e.target.value)}>
+            <Select value={type} onChange={(e) => setType(e.target.value)}>
               <option value="" disabled>
                 Tipo de ficha
               </option>
@@ -121,11 +126,18 @@ export default function CreateTraining() {
               <h3> Remover exercício </h3>
             </IconContainer>
           </ButtonContainer>
+          <CreateButton onClick={() => postExercicies()}>
+            Criar Ficha
+          </CreateButton>
         </ExerciceContainer>
       </Container>
     </Body>
   );
 }
+
+const CreateButton = styled(NeonButton)`
+  margin-top: 25px;
+`;
 
 const ButtonContainer = styled.div`
   display: flex;
@@ -254,7 +266,7 @@ export const Body = styled.div`
   min-height: 100vh;
   max-height: 100vh;
   width: 100%;
-  padding: 3% 20% 10% 5%;
+  padding: 3% 10% 10% 5%;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
