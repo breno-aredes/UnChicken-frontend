@@ -7,6 +7,7 @@ import { Body } from "./createTraining";
 import { BiArrowBack } from "react-icons/bi";
 import Link from "next/link";
 import { NeonButton } from "@/components/common/StyleButton";
+import { StartTraining } from "./startTraining";
 
 export function TrainingQuery() {
   const router = useRouter();
@@ -14,7 +15,13 @@ export function TrainingQuery() {
 
   const [training, setTraining] = useState([]);
 
+  const [step, setStep] = useState(0);
+
   const token = useToken();
+
+  function startClicked() {
+    setStep(1);
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,8 +42,8 @@ export function TrainingQuery() {
 
   return (
     <Body>
-      <Container>
-        <TrainingQueryContainer>
+      <Container step={step}>
+        <TrainingQueryContainer step={step}>
           {" "}
           <Link href={"/training"} style={{ textDecoration: "none" }}>
             <BackContainer>
@@ -83,11 +90,15 @@ export function TrainingQuery() {
           )}
           <PThree>Descrição: {training.description}</PThree>
           <OptionContainer type={training.type}>
-            <NeonButton>Iniciar</NeonButton>
+            <NeonButton onClick={() => startClicked()}>Iniciar</NeonButton>
             <NeonButton>Relatorio do treino</NeonButton>
             <NeonButton>Deletar</NeonButton>
           </OptionContainer>
         </TrainingQueryContainer>
+        <StartTrainingEfect step={step}>
+          <StartTraining></StartTraining>
+        </StartTrainingEfect>
+        <BarNeon></BarNeon>
       </Container>
     </Body>
   );
@@ -97,7 +108,14 @@ const Container = styled.div`
   display: flex;
 `;
 
-const TrainingQueryContainer = styled.div``;
+const BarNeon = styled.div`
+  width: 2px;
+  background-color: #00d9ff;
+  border: 1px solid #00d9ff;
+  border-radius: 4px;
+  box-shadow: 0 0 20px 2px #00d9ffcc, 0 0 15px 1px #00d9ff;
+  margin: 0 20px 0 0px;
+`;
 
 const OptionContainer = styled.div`
   display: flex;
@@ -181,4 +199,42 @@ const PThree = styled.p`
   color: #bdbdbd;
   font-family: "Roboto", sans-serif;
   width: ${(props) => (props.type === "series" ? "550px" : "450px")};
+`;
+
+const TrainingQueryContainer = styled.div`
+  width: 600px;
+  white-space: nowrap;
+
+  animation: ${(props) =>
+    props.step === 1 ? "removeInfo 1s ease forwards" : "none"};
+
+  overflow: ${(props) => (props.step === 1 ? "hidden" : "visible")};
+
+  @keyframes removeInfo {
+    from {
+      width: 600px;
+    }
+    to {
+      width: 0;
+    }
+  }
+`;
+
+const StartTrainingEfect = styled.div`
+  display: ${(props) => (props.step === 0 ? "none" : "flex ")};
+  width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: ${(props) =>
+    props.step === 1 ? "infoAppears 1s ease forwards" : "none"};
+  animation-delay: 1s;
+
+  @keyframes infoAppears {
+    from {
+      width: 0;
+    }
+    to {
+      width: 600px;
+    }
+  }
 `;

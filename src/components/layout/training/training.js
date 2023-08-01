@@ -123,8 +123,7 @@ const TrainingContainer = styled.div`
 const Body = styled.div`
   margin-top: 65px;
   background-color: #000000;
-  min-height: 100vh;
-  max-height: 100vh;
+  min-height: calc(100vh - 65px);
   width: 100%;
   padding: 3% 20% 10% 5%;
   box-sizing: border-box;
