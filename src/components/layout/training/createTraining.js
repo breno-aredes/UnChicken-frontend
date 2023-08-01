@@ -324,6 +324,7 @@ export const Body = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
   h1 {
     margin-top: 20px;
     margin-bottom: 20px;
