@@ -35,61 +35,69 @@ export function TrainingQuery() {
 
   return (
     <Body>
-      <Link href={"/training"} style={{ textDecoration: "none" }}>
-        <BackContainer>
-          <Back></Back>
-          <h3>voltar</h3>
-        </BackContainer>
-      </Link>
-
-      <h1>{training.name}</h1>
-
-      {training.type === "circuit" && (
-        <>
-          <PZero>
-            Este treino é feito em {training.exercises[0].series} circuitos
-          </PZero>
-          <ExcercisesHeader>
-            <POne>Exercícios</POne>
-            <PTwo>Repetições</PTwo>
-          </ExcercisesHeader>
-          {training.exercises &&
-            training.exercises.map((ex) => (
-              <ExercisesContainer key={ex.id}>
-                <POne>{ex.name}</POne>
-                <PTwo>{ex.repetitions}</PTwo>
-              </ExercisesContainer>
-            ))}
-        </>
-      )}
-      {training.type === "series" && (
-        <>
-          <PZero>Este treino é feito com séries</PZero>
-          <ExcercisesHeader>
-            <POne>Exercícios</POne>
-            <PTwo>Séries</PTwo>
-            <PTwo>Repetições</PTwo>
-          </ExcercisesHeader>
-          {training.exercises &&
-            training.exercises.map((ex) => (
-              <ExercisesContainer key={ex.id}>
-                <POne>{ex.name}</POne>
-                <PTwo>{ex.series}</PTwo>
-                <PTwo>{ex.repetitions}</PTwo>
-              </ExercisesContainer>
-            ))}
-        </>
-      )}
-      <PThree>Descrição: {training.description}</PThree>
-
-      <OptionContainer type={training.type}>
-        <NeonButton>Iniciar</NeonButton>
-        <NeonButton>Relatorio do treino</NeonButton>
-        <NeonButton>Deletar</NeonButton>
-      </OptionContainer>
+      <Container>
+        <TrainingQueryContainer>
+          {" "}
+          <Link href={"/training"} style={{ textDecoration: "none" }}>
+            <BackContainer>
+              <Back></Back>
+              <h3>voltar</h3>
+            </BackContainer>
+          </Link>
+          <h1>{training.name}</h1>
+          {training.type === "circuit" && (
+            <>
+              <PZero>
+                Este treino é feito em {training.exercises[0].series} circuitos
+              </PZero>
+              <ExcercisesHeader>
+                <POne>Exercícios</POne>
+                <PTwo>Repetições</PTwo>
+              </ExcercisesHeader>
+              {training.exercises &&
+                training.exercises.map((ex) => (
+                  <ExercisesContainer key={ex.id}>
+                    <POne>{ex.name}</POne>
+                    <PTwo>{ex.repetitions}</PTwo>
+                  </ExercisesContainer>
+                ))}
+            </>
+          )}
+          {training.type === "series" && (
+            <>
+              <PZero>Este treino é feito com séries</PZero>
+              <ExcercisesHeader>
+                <POne>Exercícios</POne>
+                <PTwo>Séries</PTwo>
+                <PTwo>Repetições</PTwo>
+              </ExcercisesHeader>
+              {training.exercises &&
+                training.exercises.map((ex) => (
+                  <ExercisesContainer key={ex.id}>
+                    <POne>{ex.name}</POne>
+                    <PTwo>{ex.series}</PTwo>
+                    <PTwo>{ex.repetitions}</PTwo>
+                  </ExercisesContainer>
+                ))}
+            </>
+          )}
+          <PThree>Descrição: {training.description}</PThree>
+          <OptionContainer type={training.type}>
+            <NeonButton>Iniciar</NeonButton>
+            <NeonButton>Relatorio do treino</NeonButton>
+            <NeonButton>Deletar</NeonButton>
+          </OptionContainer>
+        </TrainingQueryContainer>
+      </Container>
     </Body>
   );
 }
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const TrainingQueryContainer = styled.div``;
 
 const OptionContainer = styled.div`
   display: flex;
