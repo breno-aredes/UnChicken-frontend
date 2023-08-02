@@ -15,7 +15,7 @@ export default function ViewTraining({ startClicked, training }) {
       {training.type === "circuit" && (
         <>
           <PZero>
-            Este treino é feito em {training.exercises[0].series} circuitos
+            Exercícios feitos em {training.exercises[0].series} circuitos
           </PZero>
           <ExcercisesHeader>
             <POne>Exercícios</POne>
@@ -32,7 +32,7 @@ export default function ViewTraining({ startClicked, training }) {
       )}
       {training.type === "series" && (
         <>
-          <PZero>Este treino é feito com séries</PZero>
+          <PZero>Exercícios feitos com séries</PZero>
           <ExcercisesHeader>
             <POne>Exercícios</POne>
             <PTwo>Séries</PTwo>

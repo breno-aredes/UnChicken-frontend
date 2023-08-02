@@ -66,32 +66,74 @@ export function StartTraining({
                 {Array.from({ length: highestNumber }, () => (
                   <Input placeholder="0"></Input>
                 ))}
-                <div onClick={() => CheckClicked(ex.id)}>
+                <CheckContainer onClick={() => CheckClicked(ex.id)}>
                   {checkState.includes(ex.id) ? (
                     <Check></Check>
                   ) : (
                     <NoCheck></NoCheck>
                   )}
-                </div>
+                </CheckContainer>
               </ExercisesContainer>
             ))}
+        </>
+      )}
+
+      {training.type === "circuit" && (
+        <>
+          <ExcercisesHeader>
+            <POne>Exercícios</POne>
+            <PTwo>Repetições</PTwo>
+            {Array.from({ length: highestNumber }, (_, index) => (
+              <PTwo key={index + 1}>{index + 1}º</PTwo>
+            ))}
+          </ExcercisesHeader>
+          {training.exercises &&
+            training.exercises.map((ex) => (
+              <ExercisesContainer key={ex.id}>
+                <POne>{ex.name}</POne>
+                <PTwo>{ex.repetitions}</PTwo>
+                {Array.from({ length: highestNumber }, () => (
+                  <Input placeholder="0"></Input>
+                ))}
+              </ExercisesContainer>
+            ))}
+          <ExcercisesHeader>
+            <POne>p</POne>
+            <PTwo>p</PTwo>
+            {Array.from({ length: highestNumber }, (_, index) => (
+              <CheckContainer
+                type={training.type}
+                onClick={() => CheckClicked(index)}
+              >
+                {checkState.includes(index) ? (
+                  <Check></Check>
+                ) : (
+                  <NoCheck></NoCheck>
+                )}
+              </CheckContainer>
+            ))}
+          </ExcercisesHeader>
         </>
       )}
     </Div>
   );
 }
 
+const CheckContainer = styled.div`
+  width: ${(props) => (props.type === "circuit" ? "150px" : "20px")};
+  text-align: ${(props) => (props.type === "series" ? "none" : "center")};
+  margin-left: ${(props) => (props.type === "circuit" ? "0px" : "20px")};
+`;
+
 const Check = styled(FiCheckSquare)`
   font-size: 20px;
   color: #00d9ff;
   text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
-  margin-left: 20px;
 `;
 
 const NoCheck = styled(FiSquare)`
   font-size: 20px;
   color: #bdbdbd;
-  margin-left: 20px;
 `;
 
 export const Input = styled.input`

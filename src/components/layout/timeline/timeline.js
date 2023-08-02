@@ -1,3 +1,5 @@
+//ESTA PAGINA NÃO ESTA SENDO USADA
+
 import { tokenExist } from "@/api/auth";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

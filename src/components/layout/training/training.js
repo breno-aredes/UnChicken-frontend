@@ -1,5 +1,7 @@
 import { tokenExist } from "@/api/auth";
 import useGetTrainings from "@/api/hooks/useGetTraining";
+import { NeonButton } from "@/components/common/StyleButton";
+import createTraining from "@/pages/createtraining";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -25,9 +27,13 @@ export default function Training() {
     }
   }, []);
 
-  const handleTrainingClick = (trainingId) => {
+  function trainingClick(trainingId) {
     router.push(`/training/${trainingId}`);
-  };
+  }
+
+  function ButtonClick() {
+    router.push(`/createtraining`);
+  }
 
   return (
     <Body>
@@ -51,7 +57,7 @@ export default function Training() {
           {trainings.map((training) => (
             <TrainingContainer
               key={training.id}
-              onClick={() => handleTrainingClick(training.id)}
+              onClick={() => trainingClick(training.id)}
             >
               <p>
                 <span>Nome do treino: </span>
@@ -71,9 +77,16 @@ export default function Training() {
           ))}
         </ListTraining>
       )}
+      <ButtonContainer>
+        <NeonButton onClick={() => ButtonClick()}>Criar Nova Ficha</NeonButton>
+      </ButtonContainer>
     </Body>
   );
 }
+
+const ButtonContainer = styled.div`
+  margin-top: 30px;
+`;
 
 const Span = styled.span`
   text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
