@@ -12,7 +12,6 @@ export default function ViewTraining({ startClicked, training }) {
           <h3>voltar para as fichas</h3>
         </BackContainer>
       </Link>
-      <h1>{training.name}</h1>
       {training.type === "circuit" && (
         <>
           <PZero>
@@ -108,6 +107,7 @@ const PZero = styled.p`
 `;
 
 const BackContainer = styled.div`
+  margin-bottom: 20px;
   display: flex;
   width: 230px;
   justify-content: space-between;

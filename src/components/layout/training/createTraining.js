@@ -89,6 +89,7 @@ export default function CreateTraining() {
             <Input
               placeholder="Nome da ficha (ex: Treino de perna...)"
               type="trainingName"
+              maxLength={60}
               value={trainingName}
               onChange={(e) => setTrainingName(e.target.value)}
             />
@@ -317,7 +318,6 @@ const ExerciceContainer = styled.div`
 export const Body = styled.div`
   margin-top: 65px;
   background-color: #000000;
-
   min-height: calc(100vh - 65px);
   width: 100%;
   padding: 3% 10% 10% 5%;

@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import { useEffect, useState } from "react";
+import { FiCheckSquare, FiSquare } from "react-icons/fi";
 
 export function StartTraining({
   training,
@@ -8,6 +9,8 @@ export function StartTraining({
   highestNumber,
   setHighestNumber,
 }) {
+  const [checkState, setCheckState] = useState([]);
+
   function BackClicked() {
     setStep(2);
     setTimeout(function () {
@@ -31,6 +34,14 @@ export function StartTraining({
     setHighestNumber(highestNumber);
   }, [training]);
 
+  function CheckClicked(exerciseId) {
+    if (checkState.includes(exerciseId)) {
+      setCheckState(checkState.filter((i) => i !== exerciseId));
+    } else {
+      setCheckState([...checkState, exerciseId]);
+    }
+  }
+
   return (
     <Div>
       <BackContainer onClick={() => BackClicked()}>
@@ -38,7 +49,6 @@ export function StartTraining({
         <h3>voltar para o resumo</h3>
       </BackContainer>
 
-      <h1>{training.name}</h1>
       {training.type === "series" && (
         <>
           <ExcercisesHeader>
@@ -56,7 +66,13 @@ export function StartTraining({
                 {Array.from({ length: highestNumber }, () => (
                   <Input placeholder="0"></Input>
                 ))}
-                <PTwo>▀</PTwo>
+                <div onClick={() => CheckClicked(ex.id)}>
+                  {checkState.includes(ex.id) ? (
+                    <Check></Check>
+                  ) : (
+                    <NoCheck></NoCheck>
+                  )}
+                </div>
               </ExercisesContainer>
             ))}
         </>
@@ -64,6 +80,19 @@ export function StartTraining({
     </Div>
   );
 }
+
+const Check = styled(FiCheckSquare)`
+  font-size: 20px;
+  color: #00d9ff;
+  text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
+  margin-left: 20px;
+`;
+
+const NoCheck = styled(FiSquare)`
+  font-size: 20px;
+  color: #bdbdbd;
+  margin-left: 20px;
+`;
 
 export const Input = styled.input`
   width: 60px;
@@ -101,10 +130,12 @@ export const Input = styled.input`
 
 const ExercisesContainer = styled.div`
   display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 `;
 
 const Div = styled.div`
-  width: 1000px;
+  padding: 0px 0px 25px 25px;
 `;
 
 const ExcercisesHeader = styled.div`
@@ -116,7 +147,6 @@ const POne = styled.p`
   color: #bdbdbd;
   font-family: "Roboto", sans-serif;
   min-width: 250px;
-  margin-bottom: 30px;
 `;
 
 const PTwo = styled.p`
@@ -127,6 +157,7 @@ const PTwo = styled.p`
 `;
 
 const BackContainer = styled.div`
+  margin-bottom: 20px;
   display: flex;
   width: 233px;
   justify-content: space-between;
