@@ -43,7 +43,7 @@ export default function CreateTraining() {
     }
   }
 
-  function handleExerciseChange(index, field, value) {
+  function exerciseChange(index, field, value) {
     const updatedExercises = [...exercises];
     updatedExercises[index][field] = value;
 
@@ -131,7 +131,7 @@ export default function CreateTraining() {
                     type="text"
                     value={exercises[index].name}
                     onChange={(e) =>
-                      handleExerciseChange(index, "name", e.target.value)
+                      exerciseChange(index, "name", e.target.value)
                     }
                   />
                   {type !== "circuit" && (
@@ -140,7 +140,7 @@ export default function CreateTraining() {
                       style={{ width: "100px" }}
                       value={exercises[index].series}
                       onChange={(e) =>
-                        handleExerciseChange(index, "series", e.target.value)
+                        exerciseChange(index, "series", e.target.value)
                       }
                     />
                   )}
@@ -149,7 +149,7 @@ export default function CreateTraining() {
                     style={{ width: "100px" }}
                     value={exercises[index].repetitions}
                     onChange={(e) =>
-                      handleExerciseChange(index, "repetitions", e.target.value)
+                      exerciseChange(index, "repetitions", e.target.value)
                     }
                   />
                 </SequenceExercices>
