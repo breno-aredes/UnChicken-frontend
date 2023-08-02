@@ -47,7 +47,7 @@ export function TrainingQuery() {
         </TrainingQueryContainer>
         <StartTrainingEfect
           step={step}
-          highestNumber={highestNumber * 100 + 660}
+          highestNumber={highestNumber * 125 + 660}
         >
           <StartTraining
             training={trainingById}

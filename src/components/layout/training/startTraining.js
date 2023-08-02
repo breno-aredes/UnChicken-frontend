@@ -10,6 +10,7 @@ export function StartTraining({
   setHighestNumber,
 }) {
   const [checkState, setCheckState] = useState([]);
+  const [inputData, setInputData] = useState({});
 
   function BackClicked() {
     setStep(2);
@@ -34,11 +35,44 @@ export function StartTraining({
     setHighestNumber(highestNumber);
   }, [training]);
 
-  function CheckClicked(exerciseId) {
-    if (checkState.includes(exerciseId)) {
-      setCheckState(checkState.filter((i) => i !== exerciseId));
-    } else {
-      setCheckState([...checkState, exerciseId]);
+  function inputChance(series, index, id) {
+    if (inputData[id] && inputData[id].index.includes(index)) {
+      return;
+    }
+
+    const data = {
+      ...inputData,
+      [id]: {
+        index: inputData[id] ? [...inputData[id].index, index] : [index],
+      },
+    };
+
+    setInputData(data);
+
+    if (series === data[id].index.length) {
+      setCheckState([...checkState, id]);
+    }
+  }
+
+  function inputChanceCircuits(index, id) {
+    if (inputData[index] && inputData[index].id.includes(id)) {
+      return;
+    }
+
+    const data = {
+      ...inputData,
+      [index]: {
+        id:
+          inputData[index] && inputData[index].id
+            ? [...inputData[index].id, id]
+            : [id],
+      },
+    };
+
+    setInputData(data);
+
+    if (training.exercises.length === data[index].id.length) {
+      setCheckState([...checkState, index]);
     }
   }
 
@@ -63,10 +97,18 @@ export function StartTraining({
               <ExercisesContainer key={ex.id}>
                 <POne>{ex.name}</POne>
                 <PTwo>{ex.repetitions}</PTwo>
-                {Array.from({ length: highestNumber }, () => (
-                  <Input placeholder="0"></Input>
+                {Array.from({ length: ex.series }, (_, i) => (
+                  <Input
+                    placeholder="0"
+                    onChange={() => inputChance(ex.series, i + 1, ex.id)}
+                  ></Input>
                 ))}
-                <CheckContainer onClick={() => CheckClicked(ex.id)}>
+                {ex.series < highestNumber &&
+                  Array.from(
+                    { length: highestNumber - ex.series },
+                    (_, index) => <FakeInput key={index}></FakeInput>
+                  )}
+                <CheckContainer>
                   {checkState.includes(ex.id) ? (
                     <Check></Check>
                   ) : (
@@ -92,19 +134,19 @@ export function StartTraining({
               <ExercisesContainer key={ex.id}>
                 <POne>{ex.name}</POne>
                 <PTwo>{ex.repetitions}</PTwo>
-                {Array.from({ length: highestNumber }, () => (
-                  <Input placeholder="0"></Input>
+                {Array.from({ length: highestNumber }, (_, i) => (
+                  <Input
+                    placeholder="0"
+                    onChange={() => inputChanceCircuits(i, ex.id)}
+                  ></Input>
                 ))}
               </ExercisesContainer>
             ))}
           <ExcercisesHeader>
-            <POne>p</POne>
-            <PTwo>p</PTwo>
+            <POne></POne>
+            <PTwo></PTwo>
             {Array.from({ length: highestNumber }, (_, index) => (
-              <CheckContainer
-                type={training.type}
-                onClick={() => CheckClicked(index)}
-              >
+              <CheckContainer type={training.type}>
                 {checkState.includes(index) ? (
                   <Check></Check>
                 ) : (
@@ -118,6 +160,13 @@ export function StartTraining({
     </Div>
   );
 }
+
+const FakeInput = styled.div`
+  width: 60px;
+  height: 22px;
+  margin-left: 45px;
+  margin-right: 45px;
+`;
 
 const CheckContainer = styled.div`
   width: ${(props) => (props.type === "circuit" ? "150px" : "20px")};
