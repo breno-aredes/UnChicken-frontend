@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { tokenExist, useToken } from "@/api/auth";
+import { tokenExist } from "@/api/auth";
 import styled from "styled-components";
 import { Body } from "./createTraining";
 
@@ -37,11 +37,9 @@ export function TrainingQuery() {
 
   return (
     <Body>
+      <h1>{trainingById.name}</h1>
       <Container>
-        <TrainingQueryContainer
-          step={step}
-          highestNumber={highestNumber * 100 + 660}
-        >
+        <TrainingQueryContainer step={step}>
           <ViewTraining
             startClicked={startClicked}
             training={trainingById}
@@ -78,14 +76,13 @@ const BarNeon = styled.div`
 `;
 
 const TrainingQueryContainer = styled.div`
-  width: ${(props) => `${props.highestNumber + 12.5}px`};
-
+  width: 500px;
   white-space: nowrap;
   display: ${(props) => props.step === 2 && "none"};
   animation: ${(props) =>
     props.step === 1
       ? "removeInfo 0.5s ease forwards"
-      : props.step === 3
+      : props.step === 3 || props.step === 0
       ? "infoAppears 0.5s ease forwards"
       : "none"};
 
@@ -94,7 +91,7 @@ const TrainingQueryContainer = styled.div`
 
   @keyframes removeInfo {
     from {
-      width: ${(props) => `${props.highestNumber}px`};
+      width: 650px;
     }
     to {
       width: 0;
@@ -106,7 +103,7 @@ const TrainingQueryContainer = styled.div`
       width: 0;
     }
     to {
-      width: ${(props) => `${props.highestNumber}px`};
+      width: 650px;
     }
   }
 `;
@@ -118,13 +115,13 @@ const StartTrainingEfect = styled.div`
   overflow: hidden;
   animation: ${(props) =>
     props.step === 1
-      ? "infoAppears 0.5s ease forwards"
+      ? "infoAppearsTwo 0.5s ease forwards"
       : props.step === 2
-      ? "removeInfo 0.5s ease forwards"
+      ? "removeInfoTwo 0.5s ease forwards"
       : "none"};
   animation-delay: ${(props) => props.step === 1 && "0.5s"};
 
-  @keyframes infoAppears {
+  @keyframes infoAppearsTwo {
     from {
       width: 0;
     }
@@ -133,7 +130,7 @@ const StartTrainingEfect = styled.div`
     }
   }
 
-  @keyframes removeInfo {
+  @keyframes removeInfoTwo {
     from {
       width: ${(props) => `${props.highestNumber}px`};
     }
