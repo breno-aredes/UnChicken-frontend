@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
 import { useEffect, useState } from "react";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
+import { NeonButton } from "@/components/common/StyleButton";
+import { useRouter } from "next/router";
 
 export function StartTraining({
   training,
@@ -11,6 +13,7 @@ export function StartTraining({
 }) {
   const [checkState, setCheckState] = useState([]);
   const [inputData, setInputData] = useState({});
+  const router = useRouter();
 
   function BackClicked() {
     setStep(2);
@@ -35,7 +38,25 @@ export function StartTraining({
     setHighestNumber(highestNumber);
   }, [training]);
 
-  function inputChance(series, index, id) {
+  function inputChance(series, index, id, inputValue) {
+    if (inputValue === "") {
+      if (inputData[id]) {
+        const updatedIndexArray = inputData[id].index.filter(
+          (item) => item !== index
+        );
+        const data = {
+          ...inputData,
+          [id]: {
+            index: updatedIndexArray,
+          },
+        };
+        setInputData(data);
+        if (series !== data[id].index.length) {
+          setCheckState(checkState.filter((item) => item !== id));
+        }
+      }
+    }
+
     if (inputData[id] && inputData[id].index.includes(index)) {
       return;
     }
@@ -54,7 +75,25 @@ export function StartTraining({
     }
   }
 
-  function inputChanceCircuits(index, id) {
+  function inputChanceCircuits(index, id, inputValue) {
+    if (inputValue === "") {
+      if (inputData[index]) {
+        const updatedIdArray = inputData[index].id.filter(
+          (item) => item !== id
+        );
+        const data = {
+          ...inputData,
+          [index]: {
+            id: updatedIdArray,
+          },
+        };
+        setInputData(data);
+        if (training.exercises.length !== data[index].id.length) {
+          setCheckState(checkState.filter((item) => item !== index));
+        }
+      }
+    }
+
     if (inputData[index] && inputData[index].id.includes(id)) {
       return;
     }
@@ -74,6 +113,10 @@ export function StartTraining({
     if (training.exercises.length === data[index].id.length) {
       setCheckState([...checkState, index]);
     }
+  }
+
+  function postEx() {
+    router.push("/training");
   }
 
   return (
@@ -99,8 +142,11 @@ export function StartTraining({
                 <PTwo>{ex.repetitions}</PTwo>
                 {Array.from({ length: ex.series }, (_, i) => (
                   <Input
+                    type="number"
                     placeholder="0"
-                    onChange={() => inputChance(ex.series, i + 1, ex.id)}
+                    onChange={(e) =>
+                      inputChance(ex.series, i, ex.id, e.target.value)
+                    }
                   ></Input>
                 ))}
                 {ex.series < highestNumber &&
@@ -117,6 +163,14 @@ export function StartTraining({
                 </CheckContainer>
               </ExercisesContainer>
             ))}
+          <NeonButton
+            onClick={() => postEx()}
+            hover={
+              checkState.length === training.exercises.length ? true : false
+            }
+          >
+            Finalizar treino
+          </NeonButton>
         </>
       )}
 
@@ -136,8 +190,11 @@ export function StartTraining({
                 <PTwo>{ex.repetitions}</PTwo>
                 {Array.from({ length: highestNumber }, (_, i) => (
                   <Input
+                    type="text"
                     placeholder="0"
-                    onChange={() => inputChanceCircuits(i, ex.id)}
+                    onChange={(e) =>
+                      inputChanceCircuits(i, ex.id, e.target.value)
+                    }
                   ></Input>
                 ))}
               </ExercisesContainer>
@@ -155,6 +212,15 @@ export function StartTraining({
               </CheckContainer>
             ))}
           </ExcercisesHeader>
+          <NeonButton
+            onClick={() => postEx()}
+            hover={
+              checkState.length === training.exercises[0].series ? true : false
+            }
+            disabled={!(checkState.length === training.exercises[0].series)}
+          >
+            Finalizar treino
+          </NeonButton>
         </>
       )}
     </Div>
@@ -216,6 +282,11 @@ export const Input = styled.input`
     color: #808080;
     text-shadow: none;
     font-size: 15px;
+  }
+  ::-webkit-inner-spin-button,
+  ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
   }
 `;
 
