@@ -12,7 +12,8 @@ export function TrainingQuery() {
   const router = useRouter();
   const { id } = router.query;
 
-  const { trainingById, getTrainingById } = useGetTrainingById(id);
+  const { trainingById, getTrainingById, trainingByIdLoading } =
+    useGetTrainingById(id);
 
   const [step, setStep] = useState(0);
   const [highestNumber, setHighestNumber] = useState(0);
@@ -33,6 +34,21 @@ export function TrainingQuery() {
     }
   }, [id]);
 
+  useEffect(() => {
+    let internalHighestNumber = 0;
+
+    if (trainingById) {
+      trainingById.exercises.forEach((e) => {
+        if (e.series > internalHighestNumber) {
+          internalHighestNumber = e.series;
+        }
+      });
+    }
+
+    setHighestNumber(() => internalHighestNumber);
+    console.log(highestNumber, internalHighestNumber);
+  }, [trainingByIdLoading]);
+
   if (!trainingById) return <Body></Body>;
 
   return (
@@ -45,15 +61,11 @@ export function TrainingQuery() {
             training={trainingById}
           ></ViewTraining>
         </TrainingQueryContainer>
-        <StartTrainingEfect
-          step={step}
-          highestNumber={highestNumber * 125 + 660}
-        >
+        <StartTrainingEfect step={step} highestNumber={highestNumber}>
           <StartTraining
             training={trainingById}
             setStep={setStep}
             highestNumber={highestNumber}
-            setHighestNumber={setHighestNumber}
           ></StartTraining>
         </StartTrainingEfect>
         <BarNeon></BarNeon>
@@ -65,6 +77,7 @@ export function TrainingQuery() {
 const Container = styled.div`
   display: flex;
   box-sizing: border-box;
+  width: 100%;
 `;
 
 const BarNeon = styled.div`
@@ -126,13 +139,13 @@ const StartTrainingEfect = styled.div`
       width: 0;
     }
     to {
-      width: ${(props) => `${props.highestNumber}px`};
+      width: ${(props) => `${props.highestNumber * 125 + 660}px`};
     }
   }
 
   @keyframes removeInfoTwo {
     from {
-      width: ${(props) => `${props.highestNumber}px`};
+      width: ${(props) => `${props.highestNumber * 125 + 660}px`};
     }
     to {
       width: 0;
