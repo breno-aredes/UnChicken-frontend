@@ -1,6 +1,7 @@
 import { tokenExist } from "@/api/auth";
 import useGetTrainings from "@/api/hooks/useGetTraining";
 import { NeonButton } from "@/components/common/StyleButton";
+import Link from "next/link";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -26,14 +27,6 @@ export default function Training() {
     }
   }, []);
 
-  function trainingClick(trainingId) {
-    router.push(`/training/${trainingId}`);
-  }
-
-  function ButtonClick() {
-    router.push(`/createtraining`);
-  }
-
   return (
     <Body>
       <h1>Minhas fichas</h1>
@@ -54,30 +47,34 @@ export default function Training() {
       ) : (
         <ListTraining>
           {trainings.map((training) => (
-            <TrainingContainer
-              key={training.id}
-              onClick={() => trainingClick(training.id)}
+            <Link
+              href={`/training/${training.id}`}
+              style={{ textDecoration: "none" }}
             >
-              <p>
-                <span>Nome do treino: </span>
-                {training.name.length > 35
-                  ? training.name.substring(0, 35) + "..."
-                  : training.name}
-              </p>
-              <p>
-                <span>Tipo do treino: </span>
-                {training.type === "circuit" ? "Circuito" : "Série"}
-              </p>
-              <p>
-                {" "}
-                <span>Criado por: </span> {training.user.name}
-              </p>
-            </TrainingContainer>
+              {" "}
+              <TrainingContainer key={training.id + training.name}>
+                <p>
+                  <span>Nome do treino: </span>
+                  {training.name.length > 35
+                    ? training.name.substring(0, 35) + "..."
+                    : training.name}
+                </p>
+                <p>
+                  <span>Tipo do treino: </span>
+                  {training.type === "circuit" ? "Circuito" : "Série"}
+                </p>
+                <p>
+                  {" "}
+                  <span>Criado por: </span> {training.user.name}
+                </p>
+              </TrainingContainer>
+            </Link>
           ))}
         </ListTraining>
       )}
       <ButtonContainer>
-        <NeonButton onClick={() => ButtonClick()}>Criar Nova Ficha</NeonButton>
+        <Link href={`/createtraining`}></Link>
+        <NeonButton>Criar Nova Ficha</NeonButton>
       </ButtonContainer>
     </Body>
   );
@@ -114,6 +111,7 @@ const TrainingContainer = styled.div`
   justify-content: space-between;
   word-wrap: break-word;
   word-break: break-all;
+
   :hover {
     border: 2px solid #00d9ff;
     box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0;

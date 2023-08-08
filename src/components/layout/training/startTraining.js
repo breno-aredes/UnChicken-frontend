@@ -1,16 +1,11 @@
 import styled from "styled-components";
 import { BiArrowBack } from "react-icons/bi";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FiCheckSquare, FiSquare } from "react-icons/fi";
 import { NeonButton } from "@/components/common/StyleButton";
 import { useRouter } from "next/router";
 
-export function StartTraining({
-  training,
-  setStep,
-  highestNumber,
-  setHighestNumber,
-}) {
+export function StartTraining({ training, setStep, highestNumber }) {
   const [checkState, setCheckState] = useState([]);
   const [inputData, setInputData] = useState({});
   const router = useRouter();
@@ -24,19 +19,6 @@ export function StartTraining({
       setStep(0);
     }, 1000);
   }
-
-  useEffect(() => {
-    let highestNumber = 0;
-
-    if (training) {
-      training.exercises.forEach((e) => {
-        if (e.series > highestNumber) {
-          highestNumber = e.series;
-        }
-      });
-    }
-    setHighestNumber(highestNumber);
-  }, [training]);
 
   function inputChance(series, index, id, inputValue) {
     if (inputValue === "") {
@@ -137,11 +119,12 @@ export function StartTraining({
           </ExcercisesHeader>
           {training.exercises &&
             training.exercises.map((ex) => (
-              <ExercisesContainer key={ex.id}>
+              <ExercisesContainer key={ex.id + "a"}>
                 <POne>{ex.name}</POne>
                 <PTwo>{ex.repetitions}</PTwo>
                 {Array.from({ length: ex.series }, (_, i) => (
                   <Input
+                    key={`${ex.id}${i}`}
                     type="number"
                     placeholder="0"
                     onChange={(e) =>
@@ -191,6 +174,7 @@ export function StartTraining({
                 <PTwo>{ex.repetitions}</PTwo>
                 {Array.from({ length: highestNumber }, (_, i) => (
                   <Input
+                    key={i}
                     type="text"
                     placeholder="0"
                     onChange={(e) =>
@@ -204,7 +188,7 @@ export function StartTraining({
             <POne></POne>
             <PTwo></PTwo>
             {Array.from({ length: highestNumber }, (_, index) => (
-              <CheckContainer type={training.type}>
+              <CheckContainer type={training.type} key={training.type + index}>
                 {checkState.includes(index) ? (
                   <Check></Check>
                 ) : (
