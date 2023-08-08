@@ -168,6 +168,7 @@ export function StartTraining({
             hover={
               checkState.length === training.exercises.length ? true : false
             }
+            disabled={!(checkState.length === training.exercises.length)}
           >
             Finalizar treino
           </NeonButton>

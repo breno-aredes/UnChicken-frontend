@@ -1,7 +1,6 @@
 import { tokenExist } from "@/api/auth";
 import useGetTrainings from "@/api/hooks/useGetTraining";
 import { NeonButton } from "@/components/common/StyleButton";
-import createTraining from "@/pages/createtraining";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
