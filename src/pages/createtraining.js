@@ -1,5 +1,5 @@
 import Header from "@/components/common/header";
-import CreateTraining from "@/components/layout/training/createTraining";
+import CreateTraining from "@/components/layout/createTraining/createTraining";
 
 import styled from "styled-components";
 

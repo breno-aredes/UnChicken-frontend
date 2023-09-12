@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { tokenExist } from "@/api/auth";
 import styled from "styled-components";
-import { Body } from "./createTraining";
+import { Body } from "../createTraining/createTraining";
 
-import { StartTraining } from "./startTraining";
-import ViewTraining from "./viewTraining";
+import { StartTraining } from "./startTraining/startTraining";
+import ViewTraining from "./viewTraining/viewTraining";
 import useGetTrainingById from "@/api/hooks/useGetTrainingById";
 
 export function TrainingQuery() {
