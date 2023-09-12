@@ -1,4 +1,4 @@
-import { TrainingQuery } from "@/components/layout/training/training.query";
+import { TrainingQuery } from "@/components/layout/training.query/training.query";
 import Header from "@/components/common/header";
 import styled from "styled-components";
 

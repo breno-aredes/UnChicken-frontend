@@ -73,8 +73,9 @@ export default function Training() {
         </ListTraining>
       )}
       <ButtonContainer>
-        <Link href={`/createtraining`}></Link>
-        <NeonButton>Criar Nova Ficha</NeonButton>
+        <Link href={`/createtraining`}>
+          <NeonButton>Criar Nova Ficha</NeonButton>
+        </Link>
       </ButtonContainer>
     </Body>
   );
