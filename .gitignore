@@ -1,3 +1,6 @@
+# is not used.
+/src/components/layout/timeline
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 /paleta
 .vscode
