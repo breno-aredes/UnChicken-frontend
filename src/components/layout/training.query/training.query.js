@@ -65,6 +65,7 @@ export function TrainingQuery() {
           <ViewTraining
             startClicked={startClicked}
             training={trainingById}
+            id={id}
           ></ViewTraining>
         </TrainingQueryContainer>
         <StartTrainingEfect step={step} highestNumber={highestNumber}>

@@ -14,7 +14,7 @@ import {
   OptionContainer,
 } from "./styled";
 
-export default function ViewTraining({ startClicked, training }) {
+export default function ViewTraining({ startClicked, training, id }) {
   return (
     <Div>
       <Link href={"/training"} style={{ textDecoration: "none" }}>
@@ -62,7 +62,9 @@ export default function ViewTraining({ startClicked, training }) {
       <PThree>Descrição: {training.description}</PThree>
       <OptionContainer type={training.type}>
         <NeonButton onClick={() => startClicked()}>Iniciar</NeonButton>
-        <NeonButton>Relatorio do treino</NeonButton>
+        <Link href={`/training/${id}/report`}>
+          <NeonButton>Relatorio do treino</NeonButton>
+        </Link>
         <NeonButton>Deletar</NeonButton>
       </OptionContainer>
     </Div>
