@@ -99,7 +99,6 @@ export default function CreateTraining() {
     <Body>
       <h1> Criar uma fichas</h1>
       <Container>
-        {" "}
         <TrainingContainer>
           <h2>Dados da Ficha</h2>
           <TypeContainer>

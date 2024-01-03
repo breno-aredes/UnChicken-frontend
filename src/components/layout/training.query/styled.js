@@ -27,7 +27,6 @@ export const TrainingQueryContainer = styled.div`
 
   overflow: hidden;
   animation-delay: ${(props) => props.step === 2 && "0.5s"};
-
   @keyframes removeInfo {
     from {
       width: 650px;
@@ -49,9 +48,10 @@ export const TrainingQueryContainer = styled.div`
 
 export const StartTrainingEfect = styled.div`
   display: ${(props) => (props.step === 0 ? "none" : "flex ")};
-  width: 0;
+  max-width: 0;
   white-space: nowrap;
   overflow: hidden;
+  padding-right: 0px;
   animation: ${(props) =>
     props.step === 1
       ? "infoAppearsTwo 0.5s ease forwards"
@@ -62,19 +62,23 @@ export const StartTrainingEfect = styled.div`
 
   @keyframes infoAppearsTwo {
     from {
-      width: 0;
+      padding-right: 0px;
+      max-width: 0;
     }
     to {
-      width: ${(props) => `${props.highestNumber * 125 + 660}px`};
+      padding-right: 100px;
+      max-width: ${(props) => `${props.highestNumber * 125 + 660}px`};
     }
   }
 
   @keyframes removeInfoTwo {
     from {
-      width: ${(props) => `${props.highestNumber * 125 + 660}px`};
+      padding-right: 100px;
+      max-width: ${(props) => `${props.highestNumber * 125 + 660}px`};
     }
     to {
-      width: 0;
+      padding-right: 0px;
+      max-width: 0;
     }
   }
 `;
