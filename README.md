@@ -1,38 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Unchicken - Frontend
 
-## Getting Started
+O Unchicken é uma aplicação web que permite aos usuários cadastrar rotinas de treinos de calistenia, registrar seus treinos individuais e visualizar sua progressão ao longo do tempo.
 
-First, run the development server:
+## Status do Projeto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+Em desenvolvimento
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+- React
+- JavaScript
+- Next
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Instalação e uso
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+1. Clone o repositório:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+   ```bash
+     git clone git@github.com:UnChicken-App/UnChicken-front-end.git
+     ```
 
-## Learn More
+2. Instale as dependências:
 
-To learn more about Next.js, take a look at the following resources:
+   ```bash
+     cd UnChicken-front-end
+     npm install
+   ```
+3. siga as instruções no README do backend [Unchicken-back-end](https://github.com/UnChicken-App/UnChicken-back-end) e certifique-se de que esteja em execução
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+4. Execute o seguinte comando para iniciar o aplicativo:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```bash
+     npm run dev
+     ```
+5. Acesse o aplicativo no seu navegador em [http://localhost:3000](http://localhost:3000).
 
-## Deploy on Vercel
+## Contato
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Para mais informações ou dúvidas, entre em contato através do e-mail [breno_mg10@hotmail.com].
