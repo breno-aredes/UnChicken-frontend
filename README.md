@@ -26,7 +26,7 @@ Em desenvolvimento
      cd UnChicken-front-end
      npm install
    ```
-3. siga as instruções no README do backend [Unchicken-back-end](https://github.com/UnChicken-App/UnChicken-back-end) e certifique-se de que esteja em execução
+3. siga as instruções no README do backend [Unchicken-back-end](https://github.com/UnChicken-App/UnChicken-backend) e certifique-se de que esteja em execução
 
 4. Execute o seguinte comando para iniciar o aplicativo:
 
