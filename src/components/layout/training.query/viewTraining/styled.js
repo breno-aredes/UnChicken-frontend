@@ -20,10 +20,17 @@ export const PTwo = styled.p`
 `;
 
 export const PThree = styled.p`
-  margin-top: 30px;
   color: #bdbdbd;
   font-family: "Roboto", sans-serif;
-  width: ${(props) => (props.type === "series" ? "550px" : "450px")};
+  line-height: 20px;
+  display: flex;
+  width: 100%;
+`;
+
+export const DescriptionContainer = styled.div`
+  margin-top: 30px;
+  width: ${(props) => (props.type === "series" ? "550px" : "500px")};
+  white-space: pre-wrap;
 `;
 
 export const Back = styled(BiArrowBack)`

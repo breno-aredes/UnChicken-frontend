@@ -110,7 +110,7 @@ export function StartTraining({ training, setStep, highestNumber }) {
     }
   }
 
-  function postEx() {
+  function postReports() {
     router.push("/training");
   }
 
@@ -160,7 +160,7 @@ export function StartTraining({ training, setStep, highestNumber }) {
               </ExercisesContainer>
             ))}
           <NeonButton
-            onClick={() => postEx()}
+            onClick={() => postReports()}
             hover={
               checkState.length === training.exercises.length ? true : false
             }

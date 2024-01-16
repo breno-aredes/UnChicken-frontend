@@ -12,6 +12,7 @@ import {
   PZero,
   BackContainer,
   OptionContainer,
+  DescriptionContainer,
 } from "./styled";
 
 export default function ViewTraining({ startClicked, training, id }) {
@@ -59,7 +60,10 @@ export default function ViewTraining({ startClicked, training, id }) {
             ))}
         </>
       )}
-      <PThree>Descrição: {training.description}</PThree>
+      <DescriptionContainer type={training.type}>
+        <PThree>Descrição: {training.description}</PThree>
+      </DescriptionContainer>
+
       <OptionContainer type={training.type}>
         <NeonButton onClick={() => startClicked()}>Iniciar</NeonButton>
         <Link href={`/training/${id}/report`}>
