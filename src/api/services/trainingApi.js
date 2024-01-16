@@ -36,9 +36,19 @@ async function createTraining(data, token) {
   return response.data;
 }
 
+async function deleteTraining(token, trainingId) {
+  const response = await api.delete(`training/${trainingId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+}
+
 export default {
   getUserTrainings,
   trainingById,
   createTraining,
   getTrainingReports,
+  deleteTraining,
 };

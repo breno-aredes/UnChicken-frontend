@@ -14,8 +14,23 @@ import {
   OptionContainer,
   DescriptionContainer,
 } from "./styled";
+import useDeleteTraining from "@/api/hooks/useDeleteTraining";
+import { useRouter } from "next/router";
 
 export default function ViewTraining({ startClicked, training, id }) {
+  const { deleteTraining } = useDeleteTraining();
+  const router = useRouter();
+
+  async function deleteTrainingById() {
+    try {
+      console.log(training.id);
+      await deleteTraining(training.id);
+      router.push("/training");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Div>
       <Link href={"/training"} style={{ textDecoration: "none" }}>
@@ -69,7 +84,7 @@ export default function ViewTraining({ startClicked, training, id }) {
         <Link href={`/training/${id}/report`}>
           <NeonButton>Relatorio do treino</NeonButton>
         </Link>
-        <NeonButton>Deletar</NeonButton>
+        <NeonButton onClick={() => deleteTrainingById()}>Deletar</NeonButton>
       </OptionContainer>
     </Div>
   );
