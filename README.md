@@ -50,10 +50,10 @@ Em desenvolvimento
 2. Instale as dependências:
 
    ```bash
-     cd UnChicken-front-end
+     cd UnChicken-frontend
      npm install
    ```
-3. siga as instruções no README do backend [Unchicken-back-end](https://github.com/UnChicken-App/UnChicken-backend) e certifique-se de que esteja em execução
+3. siga as instruções no README do backend [Unchicken-backend](https://github.com/UnChicken-App/UnChicken-backend) e certifique-se de que esteja em execução
 
 4. Execute o seguinte comando para iniciar o aplicativo:
 
