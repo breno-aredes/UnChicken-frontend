@@ -14,7 +14,7 @@ Em desenvolvimento
 
 - [Axios](https://axios-http.com/) : Cliente HTTP para requisições à API do Unchicken.
 
-- [Styled-Components](https://styled-components.com/) : Biblioteca para estilizar componentes React usando estilos no próprio arquivo do componente.
+- [Styled-Components](https://styled-components.com/) : Biblioteca para estilizar componentes React usando estilos.
 
 - [React-Icons](https://react-icons.github.io/react-icons/) : Conjunto de ícones React customizáveis.
 
