@@ -27,7 +27,7 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-	background-color:#333333;
+	background-color:#000000;
 	scrollbar-width: thin;
 }
 ol, ul {
@@ -70,6 +70,11 @@ h1{
   ::-webkit-scrollbar-thumb:hover {
     background-color: #00d9ff;
 	box-shadow: 0 0 35px #00d9ff, 0 0 15px #00d9ffc0;
+  }
+
+  .Toastify__close-button {
+    color: #000000; 
+	opacity: 1 !important;
   }
 
 `;

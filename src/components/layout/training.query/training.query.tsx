@@ -18,6 +18,10 @@ export function TrainingQuery() {
   const router = useRouter();
   const { id } = router.query;
 
+  if (!id) {
+    return;
+  }
+
   const { trainingById, getTrainingById, trainingByIdLoading } =
     useGetTrainingById(id);
 

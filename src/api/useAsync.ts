@@ -20,12 +20,12 @@ export default function useAsync<T>({
   const [loading, setLoading] = useState<boolean>(immediate);
   const [error, setError] = useState<Error | null>(null);
 
-  const act = async (): Promise<any> => {
+  const act = async (data?: T): Promise<any> => {
     setLoading(true);
     setError(null);
 
     try {
-      const result = await handler();
+      const result = await handler(data);
       setData(result);
       setLoading(false);
       return result;
