@@ -22,7 +22,7 @@ export const BarTwo = styled.div`
   }
 `;
 
-export const Bar = styled.div<{ OpenIcon?: any }>`
+export const Bar = styled.div<{ openIcon?: any }>`
   cursor: pointer;
   width: 85%;
   display: flex;
