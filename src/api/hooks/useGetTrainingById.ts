@@ -12,11 +12,7 @@ export default function useGetTrainingById(id: any) {
     act: getTrainingById,
   } = useAsync({
     handler: () => {
-      if (id) {
-        return trainingApi.trainingById(token, id);
-      } else {
-        return Promise.reject(new Error("ID não fornecido"));
-      }
+      return trainingApi.trainingById(token, id);
     },
   });
 

@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 
 import { isEmail, isLength } from "validator";
 import { Body, Input, SignInContainer, StyleNeonButton } from "./styled";
+import { toast } from "react-toastify";
+import { customErrorToast, customSuccessToast } from "@/styles/toastStyled";
 
 export default function SignIn() {
   const router = useRouter();
@@ -58,11 +60,17 @@ export default function SignIn() {
     };
 
     try {
+      console.log(body);
       const token = await signIn(body);
       tokenSaveData(token);
+      customSuccessToast("Login realizado com sucesso");
       router.push("/training");
     } catch (error: any) {
-      return setError(error.response.status);
+      if (error?.response?.status) {
+        return setError(error.response.status);
+      } else {
+        customErrorToast("Algo deu errado, tente novamente mais tarde");
+      }
     }
   }
 
