@@ -54,13 +54,21 @@ Em desenvolvimento
 
 3. siga as instruções no README do backend [Unchicken-backend](https://github.com/UnChicken-App/UnChicken-backend) e certifique-se de que esteja em execução
 
-4. Execute o seguinte comando para iniciar o aplicativo:
+4. Conecte-se com a API:
+
+   - Crie um arquivo `.env` na raiz do projeto com as configurações necessárias para conectar com a API. Você pode utilizar arquivo `.env.example` na raiz do projeto como referência. Inclua a URL base da API.
+
+   ```env
+   NEXT_PUBLIC_API_BASE_URL=
+   ```
+
+5. Execute o seguinte comando para iniciar o aplicativo:
 
    ```bash
     npm run dev
    ```
 
-5. Acesse o aplicativo no seu navegador. A URL padrão é [http://localhost:3000](http://localhost:3000), mas caso a porta 3000 já esteja em uso, o Next.js pode escolher uma porta diferente. Verifique a saída do terminal para encontrar a URL correta. Geralmente, o terminal exibirá a URL do servidor local, como `http://localhost:<porta>` onde `<porta>` é o número da porta em uso.
+6. Acesse o aplicativo no seu navegador. A URL padrão é [http://localhost:3000](http://localhost:3000), mas caso a porta 3000 já esteja em uso, o Next.js pode escolher uma porta diferente. Verifique a saída do terminal para encontrar a URL correta. Geralmente, o terminal exibirá a URL do servidor local, como `http://localhost:<porta>` onde `<porta>` é o número da porta em uso.
 
 ## Contato
 

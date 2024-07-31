@@ -25,6 +25,10 @@ export const HeaderContainer = styled.div`
   position: fixed;
   top: 0;
   z-index: 1;
+
+  @media (max-width: 700px) {
+    padding: 0px 1px 0px 10px;
+  }
 `;
 
 export const Logo = styled.div`
@@ -47,6 +51,22 @@ export const Logo = styled.div`
     border-radius: 40px;
     border: 2px solid #00d9ff;
     box-shadow: 0px 0px 20px #00d9ffcc, 0px 0px 6px #00d9ff;
+  }
+
+  @media (max-width: 700px) {
+    h1 {
+      font-size: 25px;
+    }
+    img {
+      height: 40px;
+      width: 40px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    h1 {
+      display: none;
+    }
   }
 `;
 
@@ -82,6 +102,10 @@ export const LogBar = styled.div<{ iconClicked?: any }>`
         : "color: #808080;"}
     :hover {
     }
+  }
+
+  @media (max-width: 700px) {
+    margin-right: 10px;
   }
 `;
 

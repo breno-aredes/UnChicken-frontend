@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <title>UnChicken</title>
       <GlobalStyle />
       <Component {...pageProps} />
       <ToastContainer theme="colored" />

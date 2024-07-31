@@ -38,6 +38,18 @@ export const Body = styled.div<{ loaded: any }>`
     -webkit-text-fill-color: transparent;
     text-shadow: 0px 0px 30px #00d9ff, 0px 0px 5px #00d9ffc0;
   }
+
+  @media (max-width: 700px) {
+    padding: 70px 40px 0px 40px;
+    h1 {
+      font-size: 30px;
+      width: 90%;
+    }
+    h2 {
+      font-size: 15px;
+      width: 90%;
+    }
+  }
 `;
 
 export const TiltImage = styled.img`
@@ -53,5 +65,9 @@ export const TiltImage = styled.img`
   &:hover {
     transform: perspective(1000px) rotateX(5deg) rotateY(5deg) scale(1);
     box-shadow: 0px 0px 30px #00d9ffcc, 0px 0px 9px #00d9ff;
+  }
+
+  @media (max-width: 700px) {
+    height: 200px;
   }
 `;

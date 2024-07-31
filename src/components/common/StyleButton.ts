@@ -35,4 +35,9 @@ export const NeonButton = styled.button<{ hover?: any }>`
       text-shadow: 0px 0px 10px #00d9ffcc, 0px 0px 3px #00d9ff;
       cursor: pointer;
   `}
+
+@media (max-width: 700px) {
+    min-width: 50px;
+    font-size: 14px;
+  }
 `;

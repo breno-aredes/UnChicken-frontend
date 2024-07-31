@@ -56,7 +56,7 @@ export const LogOutIcon = styled(RiLogoutBoxRLine)`
   font-size: 20px;
 `;
 
-export const OpenIcon = styled(AiOutlineCaretRight)<{ openIcon: any }>`
+export const OpenIcon = styled(AiOutlineCaretRight)<{ openIcon: boolean }>`
   color: #808080;
   font-size: 20px;
   transition: transform 0.3s ease;

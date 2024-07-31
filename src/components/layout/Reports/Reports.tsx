@@ -3,9 +3,9 @@ import { Body } from "../createTraining/styled";
 import useGetTrainingReports from "@/api/hooks/useGetTrainingReports";
 import { useEffect } from "react";
 import { tokenExist } from "@/api/auth";
-import styled from "styled-components";
 import { Back, BackContainer } from "../training.query/startTraining/styled";
 import Link from "next/link";
+import { DateContainer, POne, PTwo, ReportContainer } from "./styled";
 
 export default function Reports() {
   const router = useRouter();
@@ -97,38 +97,3 @@ export default function Reports() {
     </Body>
   );
 }
-
-const ReportContainer = styled.div`
-  display: flex;
-  p {
-    font-family: "Roboto", sans-serif;
-    box-sizing: border-box;
-    padding: 10px;
-  }
-`;
-
-const DateContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  padding-bottom: 20px;
-  &:hover {
-    &::-webkit-scrollbar-thumb {
-      box-shadow: none;
-    }
-  }
-
-  ::-webkit-scrollbar {
-    height: 10px;
-  }
-`;
-
-export const POne = styled.p`
-  min-width: 250px;
-  color: #bdbdbd;
-`;
-
-export const PTwo = styled.p`
-  width: 150px;
-  text-align: center;
-  color: ${(props) => (props.color ? props.color : "#bdbdbd")};
-`;
