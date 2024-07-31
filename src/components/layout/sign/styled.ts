@@ -22,6 +22,10 @@ export const Body = styled.div`
   flex-direction: column;
   text-align: center;
   font-family: "Roboto", sans-serif;
+
+  @media (max-width: 700px) {
+    padding: 0px 40px;
+  }
 `;
 
 export const SignInContainer = styled.div`
@@ -69,6 +73,13 @@ export const SignInContainer = styled.div`
     display: flex;
     flex-direction: column;
   }
+
+  @media (max-width: 700px) {
+    width: 100%;
+    h1 {
+      font-size: 30px;
+    }
+  }
 `;
 
 export const Input = styled.input<{ errorNeon?: any }>`
@@ -99,5 +110,8 @@ export const Input = styled.input<{ errorNeon?: any }>`
     color: #808080;
     text-shadow: none;
     font-size: 15px;
+  }
+  @media (max-width: 700px) {
+    width: 100%;
   }
 `;

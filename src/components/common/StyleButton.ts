@@ -38,6 +38,6 @@ export const NeonButton = styled.button<{ hover?: any }>`
 
 @media (max-width: 700px) {
     min-width: 50px;
-    font-size: 10px;
+    font-size: 14px;
   }
 `;
